@@ -1,0 +1,25 @@
+footer {
+  background-image: url('/assets/imgs/landscape-with-milky-way-galaxy-elements-this-image-furnished-by-nasa 1.png');
+  background-size: cover;
+  
+  .card {
+    background-color: transparent;
+  }
+  h3 {
+    color: #2ce7ff;
+  }
+  .btn-primary {
+    padding: 4px 16px;
+  }
+  input {
+    border-radius: 10px;
+    width: 296px;
+    padding: 4px 0.75rem;
+  }
+  .list-icon-social{
+    margin-bottom: 113px;
+    div{
+      margin-right: 16px;
+    }
+  }
+}

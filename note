@@ -1,0 +1,33 @@
+# create a packages folder
+npx lerna create @fx/common
+
+lerna add @fx/common --scope=@fx/web
+
+tree
+
+lerna ls
+
+lerna ls --all
+
+lerna bootstrap
+
+lerna run start
+
+yarn add husky -D -W
+
+https://blog.typicode.com/husky-git-hooks-javascript-config/
+
+https://medium.com/edonec/how-to-create-a-react-app-without-create-react-app-aa0b5adba4cd
+https://www.smashingmagazine.com/2020/05/typescript-modern-react-projects-webpack-babel/
+
+*
+https://www.carlrippon.com/creating-react-app-with-typescript-eslint-with-webpack5/
+
+# lint
+https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/
+
+# typescript yarn workspace monorepo
+https://dev.to/t7yang/typescript-yarn-workspace-monorepo-1pao
+
+# lerna yarn workspace
+https://doppelmutzi.github.io/monorepo-lerna-yarn-workspaces/

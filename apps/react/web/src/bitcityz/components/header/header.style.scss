@@ -1,0 +1,29 @@
+.sticky {
+  position: absolute;
+}
+.navbar-light .navbar-nav .nav-link {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #f5f5f5;
+  margin: 0px 16px 0 0;
+  padding-left: 0;
+  padding-right: 0;
+  &:first-child {
+    margin-left: 32px;
+  }
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+}
+.btn-connect-wallet {
+  flex-grow: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding: 4px 16px;
+  border-radius: 16px;
+}
+.btn--icon {
+  margin-right: 8px;
+}

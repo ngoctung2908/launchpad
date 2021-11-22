@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "outDir": "lib",
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "noEmit": true,
+    "target": "ESNEXT",
+    "lib": ["DOM", "DOM.Iterable", "WebWorker", "ESNEXT"],
+    "module": "commonjs",
+    "moduleResolution": "node"
+  },
+  "include": ["src", "config"],
+  "exclude": ["node_modules", "lib"]
+}

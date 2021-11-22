@@ -1,0 +1,63 @@
+{
+  "name": "@fx/theme",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "main": "lib/app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.config.ts --color --progress",
+    "build": "cross-env NODE_ENV=production EXTRACT_CSS_WITHOUT_HASH=true webpack --config config/webpack.config.ts --color --progress --stats-children --stats-error-details",
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@fx/common": "^1.0.0",
+    "@fx/react__common": "^1.0.0",
+    "@fx/react__hook": "^1.0.0",
+    "@fx/react__redux": "^1.0.0",
+    "@fx/web_common": "^1.0.0",
+    "babel-loader": "^8.2.2",
+    "bootstrap": "^5.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-react": "^7.14.5",
+    "@storybook/addon-actions": "^6.4.0-beta.4",
+    "@storybook/addon-essentials": "^6.4.0-beta.4",
+    "@storybook/addon-links": "^6.4.0-beta.4",
+    "@storybook/builder-webpack5": "^6.4.0-beta.4",
+    "@storybook/manager-webpack5": "^6.4.0-beta.4",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^6.4.0-beta.4",
+    "@types/copy-webpack-plugin": "^8.0.1",
+    "@types/react": "^17.0.20",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.3.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "sass": "^1.42.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.3.0",
+    "typescript": "^4.4.3"
+  }
+}

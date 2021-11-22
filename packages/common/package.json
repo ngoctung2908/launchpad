@@ -1,0 +1,23 @@
+{
+  "name": "@fx/common",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "watch": "yarn build --watch",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
+  },
+  "dependencies": {
+    "ramda": "^0.27.1",
+    "uuidv4": "^6.2.12"
+  },
+  "devDependencies": {
+  }
+}

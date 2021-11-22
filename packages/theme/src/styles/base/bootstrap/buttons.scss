@@ -1,0 +1,9 @@
+.btn-primary,
+.btn-success,
+.btn-danger,
+.btn-info {
+  color: $white;
+  &:hover {
+    color: $white;
+  }
+}
