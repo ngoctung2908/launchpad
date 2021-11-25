@@ -1,0 +1,122 @@
+# Default values for mega1-admin-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: [FULLREPO]
+  pullPolicy: IfNotPresent
+  containerPort: 80
+  containerPortName: http
+
+  healthCheck:
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 80
+        scheme: HTTP
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 3
+      successThreshold: 1
+      failureThreshold: 3
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 80
+        scheme: HTTP
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 3
+      successThreshold: 1
+      failureThreshold: 3
+
+imagePullSecrets: []
+nameOverride: "[IMAGE_NAME_CI]"
+fullnameOverride: "[IMAGE_NAME_CI]"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "default"
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-dev"
+  hosts:
+    - host: "[IMAGE_NAME_CI].vietlance.net"
+      paths: ["/"]
+  tls:
+    - secretName: [IMAGE_NAME_CI]-tls
+      hosts:
+        - [IMAGE_NAME_CI].vietlance.net
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 500m
+  #   memory: 600Mi
+  # requests:
+  #   cpu: 200m
+  #   memory: 400Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/name
+          operator: In
+          values:
+          - [IMAGE_NAME_CI]
+      topologyKey: "kubernetes.io/hostname"
+
+extraInitContainers:
+  - command:
+    - sh
+    - -c
+    - sysctl -e -w net.core.somaxconn=32768; sysctl -e -w net.ipv4.ip_local_port_range="1025 65535"; sysctl -e -w net.core.netdev_max_backlog=32768; sysctl -e -w net.ipv4.tcp_max_syn_backlog=32768;
+    image: alpine:3.6 
+    imagePullPolicy: IfNotPresent
+    name: sysctl
+    resources: {}
+    securityContext:
+      privileged: true
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 40
+  targetMemoryUtilizationPercentage: 90
