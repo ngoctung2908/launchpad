@@ -1,20 +1,11 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 
 const Footer: React.FC = () => {
   return (
     <footer className="subscriber">
-      <div className="footer_inner container d-flex">
+      <div className="footer_inner container d-flex justify-content-between flex-wrap">
         <div className="card card-left">
-          <h3 className="title">Subscribe to our newsletter for development news!</h3>
-          <form className="hs-form stacked hs-form-private d-flex">
-            <div className="input mr-2">
-              <input className="form-control" type="email" name="email" placeholder="Insert your email" />
-            </div>
-            <div className="actions">
-              <Button variant="primary">Subscribe</Button>
-            </div>
-          </form>
+          <div id="footerHSForm"></div>
           <div className="icon-social">
             <div className="mt-3 mb-3">
               <span className="sub-title">Follow us on our channels</span>
@@ -47,7 +38,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="card-right">
-          <img alt="subscribe" src="assets/img/launch/phone.png" />
+          <img alt="subscribe" src="assets/imgs/phone.png" />
         </div>
       </div>
     </footer>

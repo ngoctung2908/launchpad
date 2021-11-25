@@ -1,0 +1,76 @@
+$defaultColor: #2ce7ff;
+
+@font-face {
+  font-family: 'TT Firs Neue';
+  src: url('/assets/fontz/TTFirsNeue-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+body {
+  font-family: 'TT Firs Neue';
+  color: #f5f5f5;
+  background-color: #050d1f;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.color {
+  color: $defaultColor;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 36px;
+}
+
+h6 {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.btn {
+  padding: 12px 16px;
+  border-radius: 22px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  box-shadow: 0px 0px 20px rgba(44, 231, 255, 0.5);
+  background: $defaultColor;
+  color: #212121;
+  &:hover,
+  &:focus {
+    background: $defaultColor;
+    color: #212121;
+    border: 1px solid transparent;
+  }
+}
+
+.btn-secondary {
+  background: rgba(158, 158, 158, 0.3);
+  border: 1px solid transparent;
+  &:hover,
+  &:focus {
+    background: rgba(158, 158, 158, 0.3);
+    border: 1px solid transparent;
+  }
+}
+
+.btn-outline-primary {
+  background: transparent;
+  border-color: $defaultColor;
+  color: $defaultColor;
+  &:hover,
+  &:focus {
+    background: transparent;
+    border-color: $defaultColor;
+    color: $defaultColor;
+  }
+}
+
+main {
+  min-height: calc(100vh - 54px);
+  padding-top: 54px;
+}

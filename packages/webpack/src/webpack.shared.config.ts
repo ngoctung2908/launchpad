@@ -10,7 +10,7 @@ import TerserPlugin from 'terser-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
-import { isStagingMode, isProductionMode } from './helpers';
+import { isStagingMode, isProductionMode, isDevelopmentMode } from './helpers';
 
 export const mergerWithSharedConfig = (config: Configuration, env: unknown, argv: unknown): Configuration => {
   console.log('env', env);
@@ -109,7 +109,7 @@ export const mergerWithSharedConfig = (config: Configuration, env: unknown, argv
         {
           loader: 'css-loader',
           options: {
-            sourceMap: isProductionMode || isStagingMode,
+            sourceMap: isDevelopmentMode,
             importLoaders: 3,
             modules: {
               auto: true,
@@ -119,9 +119,10 @@ export const mergerWithSharedConfig = (config: Configuration, env: unknown, argv
         },
         {
           loader: 'resolve-url-loader',
-          options: { sourceMap: isProductionMode || isStagingMode },
+          options: { sourceMap: isDevelopmentMode },
         },
-        { loader: 'sass-loader', options: { sourceMap: isProductionMode || isStagingMode } },
+        { loader: 'postcss-loader', options: { sourceMap: true } },
+        { loader: 'sass-loader', options: { sourceMap: isDevelopmentMode } },
       ],
     },
   ];
