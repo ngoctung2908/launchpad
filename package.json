@@ -10,25 +10,24 @@
     "watch": "lerna run --parallel watch",
     "build": "lerna run build",
     "start:web": "lerna run --scope @fx/react__web start --stream",
-    "build:web": "lerna run --scope={@fx/common,@fx/web_common,@fx/firebase,@fx/webpack,@fx/react__common,@fx/react__redux,@fx/react__hook,@fx/react__web} build",
-    "build:theme": "lerna run --scope={@fx/common,@fx/web_common,@fx/firebase,@fx/webpack,@fx/react__common,@fx/react__redux,@fx/react__hook,@fx/theme} build",
+    "build:web": "lerna run --scope={@fx/common,@fx/web_common,@fx/webpack,@fx/react__common,@fx/react__redux,@fx/react__hook,@fx/react__web} build",
+    "build:theme": "lerna run --scope={@fx/common,@fx/web_common,@fx/webpack,@fx/react__common,@fx/react__redux,@fx/react__hook,@fx/theme} build",
     "test": "lerna run test",
     "lint:fix": "lerna run lint:fix",
     "prepare": "husky install"
   },
   "dependencies": {
-    "babel-loader": "8.2.2"
+    "babel-loader": "8.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@types/node": "^16.10.2",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.3.0",
     "husky": "^7.0.2",
     "lerna": "^4.0.0",
-    "lint-staged": "^11.2.0",
+    "lint-staged": "^12.1.2",
     "ts-node": "^10.2.1",
-    "typescript": "~4.4.3",
+    "typescript": "~4.5.2",
     "webpack": "^5.56.1"
   },
   "workspaces": [
@@ -36,7 +35,7 @@
     "apps/**"
   ],
   "resolutions": {
-    "babel-loader": "8.2.2"
+    "babel-loader": "8.2.3"
   },
   "lint-staged": {
     "**/*.{ts,tsx,json,css,scss,md}": [
