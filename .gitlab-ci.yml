@@ -1,0 +1,55 @@
+image: asia.gcr.io/bitcityz/common/ubuntu-custom:18.04.1
+
+# Global variables
+variables:
+  REGION: asia-southeast1
+  IMAGE_NAME: launchpad
+  CONTAINER_REPO: asia.gcr.io\/bitcityz
+  NAMESPACE: ${IMAGE_NAME}-${CI_COMMIT_REF_NAME}
+  IMAGE_NAME_CI: ${IMAGE_NAME}-${CI_COMMIT_REF_NAME}
+  FULLREPO: $CONTAINER_REPO\/${IMAGE_NAME}-${CI_COMMIT_REF_NAME}
+  HELM_VALUE: ${CI_COMMIT_REF_NAME}
+  HELM_VERION: "2.7.0"
+
+stages:
+  - build
+  - deploy
+
+.link: &link |
+    /usr/bin/gcloud config set compute/region $REGION
+    /usr/bin/gcloud auth configure-docker
+
+.predeploy: &predeploy |
+  helm repo add helm-template gs://bitcityz-helmchart/helm-template
+  helm pull helm-template/helm-template --untar=true --version $HELM_VERION
+
+
+build:
+  stage: build
+  script:
+    - *link
+    - cat skaffold.yml
+    - sed -i -e "s/\[FULLREPO\]/$FULLREPO/g" skaffold.yml
+    - sed -i -e "s/\[NAMESPACE\]/$NAMESPACE/g" skaffold.yml
+    - sed -i -e "s/\[IMAGE_NAME_CI\]/$IMAGE_NAME_CI/g" skaffold.yml
+    - cat skaffold.yml
+    - /usr/local/bin/skaffold build --file-output=build.json
+  artifacts:
+    paths:
+    - build.json
+
+deploy:
+  stage: deploy
+  script:
+    - *link
+    - *predeploy
+    - sed -i -e "s/\[FULLREPO\]/$FULLREPO/g" skaffold.yml
+    - sed -i -e "s/\[NAMESPACE\]/$NAMESPACE/g" skaffold.yml
+    - sed -i -e "s/\[IMAGE_NAME_CI\]/$IMAGE_NAME_CI/g" skaffold.yml
+    - sed -i -e "s/\[HELM_VALUE\]/$HELM_VALUE/g" skaffold.yml
+    - sed -i -e "s/\[IMAGE_NAME_CI\]/$IMAGE_NAME_CI/g" helm/$HELM_VALUE.yaml
+    - sed -i -e "s/\[FULLREPO\]/$FULLREPO/g" helm/$HELM_VALUE.yaml
+    - /usr/local/bin/skaffold deploy -a build.json
+  only:
+    refs:
+      - dev
