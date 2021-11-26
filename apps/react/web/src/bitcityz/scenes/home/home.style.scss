@@ -292,3 +292,18 @@ $defaultColor: #2ce7ff;
     }
   }
 }
+
+@media (max-width: 575.98px) {
+  .home {
+    .section-upcoming-project .card-project {
+      height: 570px;
+      .project-content .big-logo {
+        margin-right: 0;
+      }
+      .project-desc > div:first-child {
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

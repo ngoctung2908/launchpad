@@ -31,3 +31,8 @@ https://dev.to/t7yang/typescript-yarn-workspace-monorepo-1pao
 
 # lerna yarn workspace
 https://doppelmutzi.github.io/monorepo-lerna-yarn-workspaces/
+
+git remote -v
+git remote add copy https://gitlab.vietlance.net/bitcityz/launchpad.git
+git push copy dev
+git push --no-verify            

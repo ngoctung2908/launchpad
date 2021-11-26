@@ -56,14 +56,14 @@ const Home: React.FC = () => {
                   <span>Mayor pool</span>
                   <img className="icon" src="/assets/icons/ocean-protocol.svg" />
                 </div>
-                <div className="d-flex project-content">
+                <div className="d-flex flex-column flex-sm-row align-items-center align-items-sm-start project-content">
                   <div className="big-logo">
                     <img src="/assets/project-logos/rectangle-303.png" />
                   </div>
-                  <div className="d-flex flex-grow-1 justify-content-between project-desc">
+                  <div className="d-flex flex-grow-1 flex-column flex-sm-row align-items-center align-items-sm-start justify-content-between project-desc">
                     <div className="d-flex flex-column flex-grow-1 justify-content-between">
                       <div>
-                        <div className="d-flex project-links">
+                        <div className="d-flex justify-content-center justify-content-sm-start project-links">
                           <div className="mini-logo">
                             <img src="/assets/project-logos/rectangle-303-mini.png" />
                           </div>
@@ -72,7 +72,7 @@ const Home: React.FC = () => {
                             <h6>GFX</h6>
                           </div>
                         </div>
-                        <div className="d-flex">
+                        <div className="d-flex justify-content-between justify-content-sm-star mb-3 mb-sm-0">
                           <a className="project-link">
                             <img src="/assets/icons/icon-ie.svg" />
                           </a>
@@ -102,8 +102,8 @@ const Home: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="d-flex flex-column justify-content-between align-items-end">
-                      <div className="text-end">
+                    <div className="d-flex flex-column justify-content-between align-items-center align-items-sm-end">
+                      <div className="text-center text-sm-end">
                         <div className="token-pair">(GFX/BUSD)</div>
                         <div className="token-rate">GFX = 0.05 BUSD</div>
                       </div>
@@ -125,7 +125,7 @@ const Home: React.FC = () => {
                   Stake <span className="bold">3 pools</span> at the same time. Get more opportunities to own hidden
                   gems
                 </p>
-                <div className="d-flex justify-content-center">
+                <div className="d-flex flex-column flex-sm-row justify-content-center">
                   <div className="card-launch">
                     <h5 className="card-title">Cityzen tickets: 0</h5>
                     <div className="card-body">
