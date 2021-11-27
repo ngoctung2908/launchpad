@@ -16,7 +16,6 @@ const Header: React.FC = () => {
               <Nav.Link href="/launch-pool">Launchpool</Nav.Link>
               <Nav.Link href="/github">Github</Nav.Link>
               <Nav.Link href="/document">Document</Nav.Link>
-              <Nav.Link href="/audit">Audit</Nav.Link>
             </Nav>
             <Button variant="primary" className="btn-connect-wallet">
               <img className="btn--icon" src="/assets/icons/icon-wallet.svg" /> Connect wallet

@@ -28,9 +28,9 @@ footer {
     }
   }
   input {
-    border-radius: 5px;
-    width: 200px;
-    padding: 7px 0.75rem;
+    border-radius: 10px;
+    width: 290px;
+    padding: 5px 0.75rem;
     margin-top: 1rem;;
   }
   form {
@@ -46,14 +46,22 @@ footer {
       box-shadow: 0px 0px 20px rgb(44 231 255 / 50%);
       background: #2ce7ff;
       color: #212121;
-      border-radius: 22px;
+      border-radius: 10px;
       font-weight: 600;
       padding: 7pxm 16px;
       border: none;
       position: absolute;
-      bottom: 2px;
-      left: 215px;
-      width: 100px;
+      bottom: 0px;
+      left: 300px;
+      width: 150px;
+      padding: 7px 0;
     }
+  }
+}
+
+@media (max-width: 360px) {
+  .actions [type='submit'] {
+    left: 220px;
+    width: 100px;
   }
 }

@@ -27,23 +27,23 @@ const LaunchPool: React.FC = () => {
                 <div className="d-flex flex-column">
                   <div className="project-name">Mayor Pass-ticket</div>
                   <div className="row">
-                    <div className="col-5 mr-3">
+                    <div className="col-12 col-sm-5 d-flex flex-row flex-sm-column justify-content-between mr-3">
                       <div className="field-label">Required:</div>
                       <div className="field-value">&lt;= 100,000 BCTZ</div>
                     </div>
-                    <div className="col-4 mr-3">
+                    <div className="col-12 col-sm-4 d-flex flex-row flex-sm-column justify-content-between mr-3 mt-3 mt-sm-0">
                       <div className="field-label">Staking:</div>
                       <div className="field-value">0 BCTZ</div>
                     </div>
-                    <div className="col-3">
+                    <div className="col-12 col-sm-3 d-flex flex-row flex-sm-column justify-content-between mt-3 mt-sm-0">
                       <div className="field-label">Lock-up Time:</div>
                       <div className="field-value">7 days</div>
                     </div>
                   </div>
                   <div className="row mt-3">
-                    <div className="col-5 mr-3">
+                    <div className="col-12 col-sm-5 d-flex flex-row flex-sm-column justify-content-between">
                       <div className="field-label">Remaining unlock:</div>
-                      <div className="field-value">7 days : 00 hours : 00 mins</div>
+                      <div className="field-value text-right text-sm-left">7 days : 00 hours : 00 mins</div>
                     </div>
                     <div className="col">
                       <br />

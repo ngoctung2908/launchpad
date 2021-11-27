@@ -11,6 +11,7 @@ import withStore from './with-redux';
 
 bootstrap((win: Window, doc: Document) => {
   win.timeoutToReload && clearTimeout(win.timeoutToReload);
+  window.document.title = 'Bitcityz Launchpad'
 
   ReactDOM.render(
     <React.Fragment>
