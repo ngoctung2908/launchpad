@@ -1,6 +1,6 @@
 footer {
   position: relative;
-  &::before{
+  &::before {
     content: ' ';
     position: absolute;
     left: 0%;
@@ -9,7 +9,7 @@ footer {
     bottom: 0%;
     background-image: url('/assets/imgs/landscape-with-milky-way-galaxy-elements-this-image-furnished-by-nasa 1.png');
     background-size: cover;
-    opacity: .15;
+    opacity: 0.15;
     background-position-y: bottom;
   }
 
@@ -20,7 +20,7 @@ footer {
   .btn-primary {
     padding: 4px 16px;
   }
-  
+
   .list-icon-social {
     margin-bottom: 113px;
     div {
@@ -31,7 +31,7 @@ footer {
     border-radius: 10px;
     width: 290px;
     padding: 5px 0.75rem;
-    margin-top: 1rem;;
+    margin-top: 1rem;
   }
   form {
     position: relative;
@@ -59,9 +59,54 @@ footer {
   }
 }
 
+@media (max-width: 768.98px) {
+  footer {
+    .card-right {
+      position: absolute;
+      bottom: 0;
+      right: -125px;
+      img {
+        width: 50%;
+      }
+    }
+    &::before {
+      background-size: contain;
+      background-position-y: 154px;
+      background-repeat: no-repeat;
+      opacity: 1;
+    }
+  }
+}
+
 @media (max-width: 360px) {
-  .actions [type='submit'] {
-    left: 220px;
-    width: 100px;
+  footer {
+    height: 450px;
+    &::before {
+      background-size: cover;
+      background-position-y: -50px;
+      background-position-x: center;
+    }
+    .card-right {
+      right: -200px;
+    }
+    form {
+      > div > label {
+        width: 400px;
+        > span {
+          font-size: 20px;
+          line-height: 24px;
+        }
+      }
+      input {
+        width: 220px;
+      }
+      .actions [type='submit'] {
+        left: 235px;
+        width: 100px;
+      }
+    }
+    .list-icon-social {
+      margin-bottom: 0;
+    }
   }
 }
