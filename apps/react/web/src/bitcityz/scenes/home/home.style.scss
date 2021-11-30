@@ -102,7 +102,7 @@ $defaultColor: #2ce7ff;
       width: 493px;
     }
     .card-project {
-      height: 250px;
+      min-height: 210px;
       position: relative;
       padding: 21px 24px;
       &::before {
@@ -137,14 +137,14 @@ $defaultColor: #2ce7ff;
         .big-logo {
           margin-right: 24px;
           img {
-            width: 168px;
-            height: 168px;
+            width: 128px;
+            height: 128px;
             border-radius: 16px;
           }
         }
         .mini-logo img {
-          width: 48px;
-          height: 48px;
+          width: 72px;
+          height: 72px;
           border-radius: 42px;
         }
         .project-name {
@@ -299,7 +299,7 @@ $defaultColor: #2ce7ff;
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 768px) {
   .home {
     .banner {
       h3 {
@@ -323,7 +323,19 @@ $defaultColor: #2ce7ff;
         margin-right: 16px;
       }
     }
+    .project-desc {
+      position: relative;
+    }
 
+    .section-upcoming-project .card-project .project-content .big-logo {
+      margin-right: 0;
+    }
+    .section-upcoming-project {
+      .token-pair,
+      .token-rate {
+        display: none;
+      }
+    }
     .section-projects {
       h3 {
         font-size: 20px;
@@ -336,9 +348,10 @@ $defaultColor: #2ce7ff;
     }
 
     .project-name {
-      display: none;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
     }
-
     .sections-launch {
       h3 {
         font-size: 20px;
@@ -353,30 +366,15 @@ $defaultColor: #2ce7ff;
         width: 92%;
         text-align: center;
       }
-      .card-launch-project--content{
+      .card-launch-project--content {
         font-size: 12px;
-        width: 130px;
+        width: 220px;
       }
     }
   }
 }
 
-@media (max-width: 575.98px) {
-  .home {
-    .section-upcoming-project .card-project {
-      height: 460px;
-      .project-content .big-logo {
-        margin-right: 0;
-      }
-      .project-desc > div:first-child {
-        margin-right: 0;
-        margin-bottom: 16px;
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .home {
     .banner,
     .sections-launch {

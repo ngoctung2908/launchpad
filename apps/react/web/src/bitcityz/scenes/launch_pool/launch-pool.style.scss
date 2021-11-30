@@ -55,20 +55,21 @@ $defaultColor: #2ce7ff;
   }
 
   .big-logo {
-    height: 173px;
     filter: drop-shadow(0px 0px 20px rgba(44, 231, 255, 0.5));
   }
 
   .ticket-number {
     background: url(/assets/imgs/pool-title-bg.png) center center no-repeat;
     height: 57px;
-    width: 230px;
-    text-align: center;
     line-height: 57px;
     color: $defaultColor;
     font-weight: 600;
     background-size: contain;
     margin-top: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .project-desc {
@@ -94,7 +95,6 @@ $defaultColor: #2ce7ff;
 
   button {
     width: 100%;
-    margin-top: 50px;
   }
 
   .sections-launch {
@@ -117,7 +117,7 @@ $defaultColor: #2ce7ff;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1199px) {
   .launch-pool {
     .banner {
       img {
@@ -125,14 +125,14 @@ $defaultColor: #2ce7ff;
       }
     }
     .card-project {
-      min-height: 380px;
+      min-height: 390px;
       padding: 16px;
       .big-logo img {
         height: 160px;
       }
     }
     .link-view-details-container {
-      margin-top: 70px !important;
+      margin-top: 64px !important;
     }
     .actions {
       position: absolute;
@@ -141,19 +141,20 @@ $defaultColor: #2ce7ff;
       left: 0;
       padding: 24px;
     }
-    button {
-      font-size: 14px;
+    .sections-launch {
+      display: none;
     }
-  }
-  .sections-launch {
-    display: none;
   }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 1200px) {
   .launch-pool {
     .project-content {
       margin-top: 32px;
+    }
+    .card-project .big-logo img {
+      height: unset;
+      width: 100%;
     }
     .project-desc {
       margin-left: unset;
@@ -166,24 +167,52 @@ $defaultColor: #2ce7ff;
       left: 0;
       right: 0;
     }
-    .card-project {
-      min-height: 715px;
-    }
     button {
       margin-top: 16px;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .launch-pool {
+    .ticket-number {
+      margin-top: 40px;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  .launch-pool {
+    .ticket-number {
+      height: 57px;
+      width: 230px;
+      background-size: contain;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .launch-pool {
+    .ticket-number {
+      margin-top: 24px;
+      min-height: 134px;
+      width: 100%;
+      background-size: contain;
+    }
+    .card-project {
+      padding-bottom: 210px;
+    }
+    .link-view-details-container {
+      margin-top: 24px !important;
     }
   }
 }
 
 @media (max-width: 360px) {
   .launch-pool {
-    margin-bottom: 65px;
-    .card-project {
-      min-width: 300px;
-      min-height: 700px !important;
-    }
-    .link-view-details-container {
-      margin-top: 24px !important;
+    .ticket-number {
+      min-height: 64px;
     }
   }
 }

@@ -26,7 +26,7 @@ export default (env: unknown, argv: unknown) => {
 
       // // style
       // 'animate.css',
-      'bootstrap/scss/bootstrap.scss',
+      './src/bitcityz/style/bootstrap.scss',
     ],
     loading: ['@fx/theme/src/styles/loading.scss'],
   };

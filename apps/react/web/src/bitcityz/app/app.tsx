@@ -11,7 +11,7 @@ const App: React.FC = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/launch-pool" element={<LaunchPool />} />
+          <Route path="/launchpool" element={<LaunchPool />} />
         </Routes>
         <Footer />
       </div>
