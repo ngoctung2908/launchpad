@@ -27,35 +27,36 @@ footer {
       margin-right: 16px;
     }
   }
+}
+
+form.hs-form {
+  position: relative;
+  width: 500px;
   input {
     border-radius: 10px;
     width: 290px;
     padding: 5px 0.75rem;
     margin-top: 1rem;
   }
-  form {
-    position: relative;
-    width: 500px;
-    > div > label > span {
-      color: #2ce7ff;
-      font-weight: bold;
-      font-size: 32px;
-      line-height: 36px;
-    }
-    .actions [type='submit'] {
-      box-shadow: 0px 0px 20px rgb(44 231 255 / 50%);
-      background: #2ce7ff;
-      color: #212121;
-      border-radius: 10px;
-      font-weight: 600;
-      padding: 7pxm 16px;
-      border: none;
-      position: absolute;
-      bottom: 0px;
-      left: 300px;
-      width: 150px;
-      padding: 7px 0;
-    }
+  > div > label > span {
+    color: #2ce7ff;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 36px;
+  }
+  .actions [type='submit'] {
+    box-shadow: 0px 0px 20px rgb(44 231 255 / 50%);
+    background: #2ce7ff;
+    color: #212121;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 7pxm 16px;
+    border: none;
+    position: absolute;
+    bottom: 0px;
+    left: 300px;
+    width: 150px;
+    padding: 7px 0;
   }
 }
 
@@ -89,24 +90,24 @@ footer {
     .card-right {
       right: -200px;
     }
-    form {
-      > div > label {
-        width: 400px;
-        > span {
-          font-size: 20px;
-          line-height: 24px;
-        }
-      }
-      input {
-        width: 220px;
-      }
-      .actions [type='submit'] {
-        left: 235px;
-        width: 100px;
-      }
-    }
     .list-icon-social {
       margin-bottom: 0;
+    }
+  }
+  form.hs-form {
+    > div > label {
+      width: 400px;
+      > span {
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+    input {
+      width: 220px;
+    }
+    .actions [type='submit'] {
+      left: 235px;
+      width: 100px;
     }
   }
 }

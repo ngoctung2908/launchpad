@@ -12,23 +12,33 @@ const Footer: React.FC = () => {
             </div>
             <div className="d-flex list-icon-social">
               <div>
-                <a href="https://twitter.com/BitCity_Z" target="_blank">
-                  <img alt="twitter" src="assets/img/launch/twitter_black.png" className="mrr-24" />
-                </a>
-              </div>
-              <div>
                 <a href="https://t.me/BitCityZSocial" target="_blank">
-                  <img alt="telegram" src="assets/img/launch/telegram_black.png" className="mrr-24" />
+                  <img alt="telegram" src="/assets/icons/socials/telegram.svg" className="mrr-24" />
+                </a>
+              </div>
+              <div>
+                <a href="https://twitter.com/BitCityZ_social" target="_blank">
+                  <img alt="twitter" src="/assets/icons/socials/twitter.svg" className="mrr-24" />
                 </a>
               </div>
               <div>
                 <a href="https://medium.com/@bitcityz.social" target="_blank">
-                  <img alt="medium" src="assets/img/launch/ie_black.png" className="mrr-24" />
+                  <img alt="medium" src="/assets/icons/socials/medium.svg" className="mrr-24" />
                 </a>
               </div>
               <div>
-                <a href="https://medium.com/@bitcityz.social" target="_blank">
-                  <img alt="medium" src="assets/img/launch/medium_icon.png" className="mrr-24" />
+                <a href="https://discord.gg/yFwuxBME " target="_blank">
+                  <img alt="discord" src="/assets/icons/socials/discord.svg" className="mrr-24" />
+                </a>
+              </div>
+              <div>
+                <a href="https://www.youtube.com/channel/UCC1X5Hsg0YQYkDsp6K4SzDQ" target="_blank">
+                  <img alt="youtube" src="/assets/icons/socials/youtube.svg" className="mrr-24" />
+                </a>
+              </div>
+              <div>
+                <a href="https://www.facebook.com/bitcityz/ " target="_blank">
+                  <img alt="facebook" src="/assets/icons/socials/facebook.svg" className="mrr-24" />
                 </a>
               </div>
             </div>

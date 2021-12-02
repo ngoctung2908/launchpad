@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 
 const Project = (props: any) => {
   return (
-    <div className="card-project col-sm-12 col-md-11 col-lg-11 mt-3 mb-3">
+    <div className="card-project col-sm-12 col-md-11 col-lg-11 col-xl-9 mt-3 mb-3">
       <div className="project-name">
         <span>Mayor pool</span>
         <img className="icon" src="/assets/icons/ocean-protocol.svg" />
@@ -25,7 +25,7 @@ const Project = (props: any) => {
                 </div>
                 <span className="token-pair">(GFX/BUSD)</span>
               </div>
-              <div className="d-flex justify-content-md-center justify-content-lg-start justify-content-xl-end mb-3 mb-sm-0">
+              <div className="d-flex justify-content-between justify-content-md-center justify-content-lg-start justify-content-xl-end mb-3 mb-sm-0">
                 <a className="project-link">
                   <img src="/assets/icons/icon-ie.svg" />
                 </a>

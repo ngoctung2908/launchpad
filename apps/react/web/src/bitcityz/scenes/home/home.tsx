@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Nav, Tab, Tabs } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Pool from './components/pool';
 import Project from './components/project';
 
 const Home: React.FC = () => {
@@ -14,7 +16,7 @@ const Home: React.FC = () => {
             In just a few simple steps, you can own your hidden gems by participating in IDO and IGO of high-quality
             projects.
           </p>
-          <div>
+          <div className="d-none">
             <Button variant="primary">Join Launchpad</Button>
             <Button variant="outline-primary" className="btn-connect-wallet">
               Learn about Launchpad
@@ -29,31 +31,61 @@ const Home: React.FC = () => {
           <div className="d-flex col-9 col-lg-12 justify-content-center flex-wrap m-auto">
             <div className="card-project">
               <span>Current Funds Locked</span>
-              <h3>$87.58M</h3>
+              <h3>$0</h3>
             </div>
 
             <div className="card-project">
               <span>Total Funds Raised</span>
-              <h3>$87.58M</h3>
+              <h3>$0</h3>
             </div>
 
             <div className="card-project">
               <span>Project Launch</span>
-              <h3>10</h3>
+              <h3>0</h3>
             </div>
 
             <div className="card-project">
               <span>Inverstors</span>
-              <h3>250</h3>
+              <h3>0</h3>
             </div>
           </div>
         </section>
-        <section className="container-lg d-flex flex-column justify-content-center align-items-center section-upcoming-project">
+        <section className="container-lg section-upcoming-project">
           <img src="/assets/imgs/upcoming-pool.png" />
-          <h3 className="text-large mb-5">Upcoming project</h3>
-          <Project />
-          <Project />
-          <Project />
+          <h3 className="text-large mb-5">Upcoming pool</h3>
+          <Tab.Container defaultActiveKey="mayorPool">
+            <Nav className="d-flex justify-content-between nav col-sm-12 col-md-11 col-lg-11 col-xl-9 mb-3 mx-auto">
+              <Nav.Item>
+                <Nav.Link eventKey="mayorPool">
+                  Mayor pool
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="elitePool">
+                  Elite pool
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="cityzenPool">
+                  Cityzen poo
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+            <Tab.Content>
+              <Tab.Pane eventKey="mayorPool">
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                  <Project />
+                  <Project />
+                  <Project />
+                  <Button className="btn-see-more mt-3" variant="primary">
+                    See more
+                  </Button>
+                </div>
+              </Tab.Pane>
+              <Tab.Pane eventKey="elitePool">Coming soon</Tab.Pane>
+              <Tab.Pane eventKey="cityzenPool">Coming soon</Tab.Pane>
+            </Tab.Content>
+          </Tab.Container>
         </section>
         <div className="sections-launch">
           <section className="section-launch-pool">
@@ -64,59 +96,13 @@ const Home: React.FC = () => {
                 Stake <span className="bold">3 pools</span> at the same time. Get more opportunities to own hidden gems
               </p>
               <div className="d-flex flex-column flex-sm-row justify-content-center">
-                <div className="card-launch">
-                  <h5 className="card-title">Cityzen tickets: 0</h5>
-                  <div className="card-body">
-                    <img src="/assets/img/launch/cityzen.png" />
-                    <h5 className="title">Pool Details</h5>
-                    <div className="launch-desc">
-                      <div className="d-flex justify-content-between">
-                        <span>Required</span>
-                        <span>10,000 - 49,999 BCTZ</span>
-                      </div>
-                      <div className="d-flex justify-content-between">
-                        <span>Required Lock Time:</span>
-                        <span>7 days</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="card-launch">
-                  <h5 className="card-title">Cityzen tickets: 0</h5>
-                  <div className="card-body">
-                    <img src="/assets/img/launch/elite.png" />
-                    <h5 className="title">Pool Details</h5>
-                    <div className="launch-desc">
-                      <div className="d-flex justify-content-between">
-                        <span>Required</span>
-                        <span>50,000 - 99,999 BCTZ</span>
-                      </div>
-                      <div className="d-flex justify-content-between">
-                        <span>Required Lock Time:</span>
-                        <span>7 days</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="card-launch">
-                  <h5 className="card-title">Cityzen tickets: 0</h5>
-                  <div className="card-body">
-                    <img src="/assets/img/launch/mayor.png" />
-                    <h5 className="title">Pool Details</h5>
-                    <div className="launch-desc">
-                      <div className="d-flex justify-content-between">
-                        <span>Required</span>
-                        <span>&gt;= 100,000 BCTZ</span>
-                      </div>
-                      <div className="d-flex justify-content-between">
-                        <span>Required Lock Time:</span>
-                        <span>7 days</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Pool type="cityzen" requiredValue="10,000 - 49,999 BCTZ" requiredTime="7 days" totalTickets={0} />
+                <Pool type="elite" requiredValue="50,000 - 99,999 BCTZ" requiredTime="7 days" totalTickets={0} />
+                <Pool type="mayor" requiredValue=">= 100,000 BCTZ" requiredTime="7 days" totalTickets={0} />
               </div>
-              <Button variant="primary">Stake now</Button>
+              <Link className="btn btn-primary" to="/launchpool">
+                Stake now
+              </Link>
             </div>
           </section>
           <section className="section-launch-projects">
@@ -132,72 +118,74 @@ const Home: React.FC = () => {
                 marketing, exposure and initial user base. We look for strong teams with a unique and innovative vision
                 in the crypto space. If you think you are one of these projects, apply below!
               </p>
-              <Button variant="primary">Apply to launch</Button>
-              {/* <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeGkn_Szv_UCAQ2xQk0PHUp9gC7QFFzH0cCcyaY1qkFOc7reg/viewform"
-              target="_blank"
-              className="btn-launchpad">
-              Apply to launch
-            </a> */}
-              <h3 className="title-launchpad col-4 col-sm-11">
-                How <span className="color">BitcityZ Launchpad</span> support projects and investors
-              </h3>
-              <p>
-                On the project side, we help to incubate strong teams with great ideas and secured project builders by:{' '}
-              </p>
-              <div className="col-12 col-sm-10 d-flex justify-content-center flex-wrap card-launch-projects">
-                <div className="card-launch-project text-center">
-                  <div className="card-launch-project--content">
-                    <img src="/assets/img/launch/profile-2user.png" />
-                    <p>Bringing them closer to the public and Blockchain</p>
+              <Button
+                variant="primary"
+                target="_blank"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeGkn_Szv_UCAQ2xQk0PHUp9gC7QFFzH0cCcyaY1qkFOc7reg/viewform?usp=sf_link">
+                Apply to launch
+              </Button>
+              <div className="d-none">
+                <h3 className="title-launchpad col-4 col-sm-11">
+                  How <span className="color">BitcityZ Launchpad</span> support projects and investors
+                </h3>
+                <p>
+                  On the project side, we help to incubate strong teams with great ideas and secured project builders
+                  by:{' '}
+                </p>
+                <div className="col-12 col-sm-10 d-flex justify-content-center flex-wrap card-launch-projects">
+                  <div className="card-launch-project text-center">
+                    <div className="card-launch-project--content">
+                      <img src="/assets/img/launch/profile-2user.png" />
+                      <p>Bringing them closer to the public and Blockchain</p>
+                    </div>
+                  </div>
+                  <div className="card-launch-project text-center">
+                    <div className="card-launch-project--content">
+                      <img src="/assets/img/launch/box-tick.png" />
+                      <p>Supporting users to understand the project</p>
+                    </div>
+                  </div>
+                  <div className="card-launch-project text-center">
+                    <div className="card-launch-project--content">
+                      <img src="/assets/img/launch/status-up.png" />
+                      <p>Raising and Exchanging capital faster &amp; easier</p>
+                    </div>
+                  </div>
+                  <div className="card-launch-project text-center">
+                    <div className="card-launch-project--content">
+                      <img src="/assets/img/launch/task-square.png" />
+                      <p>Improving projects more compatible with markets</p>
+                    </div>
+                  </div>
+                  <div className="card-launch-project text-center">
+                    <div className="card-launch-project--content">
+                      <img src="/assets/img/launch/medal-star.png" />
+                      <p>Supporting fundraising projects through IDO and IGO form</p>
+                    </div>
                   </div>
                 </div>
-                <div className="card-launch-project text-center">
-                  <div className="card-launch-project--content">
-                    <img src="/assets/img/launch/box-tick.png" />
-                    <p>Supporting users to understand the project</p>
+                <p className="title-user-side mt-3 mb-3">
+                  On the user side, <span className="bold">BitcityZ</span> Launchpad is a free, secure, transparent
+                  bridge for users to connect with proven potential projects that can bring superior profits.{' '}
+                </p>
+                <div className="col-12 col-sm-10 d-flex justify-content-center flex-wrap card-launch-projects">
+                  <div className="card-launch-project text-center">
+                    <div className="card-launch-project--content">
+                      <img src="/assets/img/launch/people.png" />
+                      <p>Building a community for open project evaluation</p>
+                    </div>
                   </div>
-                </div>
-                <div className="card-launch-project text-center">
-                  <div className="card-launch-project--content">
-                    <img src="/assets/img/launch/status-up.png" />
-                    <p>Raising and Exchanging capital faster &amp; easier</p>
+                  <div className="card-launch-project text-center">
+                    <div className="card-launch-project--content">
+                      <img src="/assets/img/launch/cpu-charge.png" />
+                      <p>Getting all the information about the project in just one app. </p>
+                    </div>
                   </div>
-                </div>
-                <div className="card-launch-project text-center">
-                  <div className="card-launch-project--content">
-                    <img src="/assets/img/launch/task-square.png" />
-                    <p>Improving projects more compatible with markets</p>
-                  </div>
-                </div>
-                <div className="card-launch-project text-center">
-                  <div className="card-launch-project--content">
-                    <img src="/assets/img/launch/medal-star.png" />
-                    <p>Supporting fundraising projects through IDO and IGO form</p>
-                  </div>
-                </div>
-              </div>
-              <p className="title-user-side mt-3 mb-3">
-                On the user side, <span className="bold">BitcityZ</span> Launchpad is a free, secure, transparent bridge
-                for users to connect with proven potential projects that can bring superior profits.{' '}
-              </p>
-              <div className="col-12 col-sm-10 d-flex justify-content-center flex-wrap card-launch-projects">
-                <div className="card-launch-project text-center">
-                  <div className="card-launch-project--content">
-                    <img src="/assets/img/launch/people.png" />
-                    <p>Building a community for open project evaluation</p>
-                  </div>
-                </div>
-                <div className="card-launch-project text-center">
-                  <div className="card-launch-project--content">
-                    <img src="/assets/img/launch/cpu-charge.png" />
-                    <p>Getting all the information about the project in just one app. </p>
-                  </div>
-                </div>
-                <div className="card-launch-project text-center">
-                  <div className="card-launch-project--content">
-                    <img src="/assets/img/launch/home-trend-up.png" />
-                    <p>Making users the startup incubator's first explorers</p>
+                  <div className="card-launch-project text-center">
+                    <div className="card-launch-project--content">
+                      <img src="/assets/img/launch/home-trend-up.png" />
+                      <p>Making users the startup incubator's first explorers</p>
+                    </div>
                   </div>
                 </div>
               </div>

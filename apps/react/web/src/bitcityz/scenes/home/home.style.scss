@@ -98,6 +98,64 @@ $defaultColor: #2ce7ff;
 
   .section-upcoming-project {
     padding-top: 80px;
+    .nav-tabs {
+      margin-bottom: 40px;
+    }
+    .nav-item {
+      position: relative;
+      .nav-link {
+        position: absolute;
+        color: #fff;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.active {
+          color: #2ce7ff;
+          background: rgba(44, 231, 255, 0.3);
+        }
+        img {
+          width: 18px;
+          height: 18px;
+        }
+      }
+      [role="tablist"]{
+        &::before{
+          content: ' ';
+          background: url('/assets/imgs/download 1.svg');
+        }
+      }
+      .tab-pane {
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+      height: 62px;
+
+      /* Primary Color/ Blue */
+      border: 1px solid #2ce7ff;
+      box-sizing: border-box;
+      border-radius: 12px;
+
+      /* Inside Auto Layout */
+      flex: none;
+      order: 0;
+      flex-grow: 1;
+
+      &:first-child {
+        margin-right: 16px;
+      }
+      &:last-child {
+        margin-right: 16px;
+      }
+      &:not(:first-child):not(:last-child) {
+        margin: 0 16px;
+      }
+    }
     img {
       width: 493px;
     }
@@ -155,14 +213,8 @@ $defaultColor: #2ce7ff;
           text-transform: uppercase;
         }
       }
-      .project-desc {
-        & > div:first-child {
-          margin-right: 24px;
-        }
-      }
       .project-link {
-        margin-top: 16px;
-        margin-right: 24px;
+        margin: 16px 12px 0;
 
         &:last-child {
           margin-right: 0;
@@ -235,7 +287,7 @@ $defaultColor: #2ce7ff;
     .card-body {
       position: relative;
       padding: 23px;
-      margin-top: 16px;
+      margin-bottom: 16px;
       &::before {
         content: ' ';
         border: 1px solid $defaultColor;
@@ -299,6 +351,16 @@ $defaultColor: #2ce7ff;
   }
 }
 
+@media (min-width: 769px) {
+  .home {
+    .project-desc {
+      & > div:first-child {
+        margin-right: 24px;
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .home {
     .banner {
@@ -347,10 +409,8 @@ $defaultColor: #2ce7ff;
       }
     }
 
-    .project-name {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
+    .card-project > .project-name {
+      display: none;
     }
     .sections-launch {
       h3 {
