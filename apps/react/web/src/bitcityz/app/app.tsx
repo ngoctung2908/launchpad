@@ -3,6 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Home, LaunchPool } from '../scenes';
 import { Footer, Header } from '../components';
+// import { getAppEnv } from '../utils';
+// alert(
+//   getAppEnv()
+// )
 
 const App: React.FC = () => {
   return (

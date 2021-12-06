@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const Project = (props: any) => {
+const Project = () => {
   return (
     <div className="card-project col-sm-12 col-md-11 col-lg-11 col-xl-9 mt-3 mb-3">
       <div className="project-name">

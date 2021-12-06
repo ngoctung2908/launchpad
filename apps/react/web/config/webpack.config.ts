@@ -48,6 +48,16 @@ export default (env: unknown, argv: unknown) => {
     entry: {
       app: ['./src/index.tsx'],
     },
+    resolve: {
+      fallback: {
+        stream: require.resolve('stream-browserify'),
+        buffer: require.resolve('buffer'),
+        crypto: false,
+        http: false,
+        https: false,
+        os: false,
+      },
+    },
     output: outputs.script,
     plugins: [
       new CleanWebpackPlugin({
@@ -121,5 +131,5 @@ export default (env: unknown, argv: unknown) => {
     },
   };
 
-  return mergerWithSharedConfig(config, env, argv);
+  return mergerWithSharedConfig({ config, env, argv, paths });
 };

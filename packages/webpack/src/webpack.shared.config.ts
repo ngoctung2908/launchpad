@@ -9,12 +9,22 @@ import ESLintPlugin from 'eslint-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
+import { pathOr } from 'ramda';
 
-import { isStagingMode, isProductionMode, isDevelopmentMode } from './helpers';
+import { isStagingMode, isProductionMode, isDevelopmentMode, getWebpackModeByNodeEnv } from './helpers';
+import path from 'path';
 
-export const mergerWithSharedConfig = (config: Configuration, env: unknown, argv: unknown): Configuration => {
+export const mergerWithSharedConfig: (params: {
+  config: Configuration;
+  env: unknown;
+  argv: unknown;
+  paths: { root: string; [key: string]: string };
+}) => any = ({ config, env, argv, paths }): Configuration => {
   console.log('env', env);
   console.log('argv', argv);
+
+  const isDevServer = pathOr(false, ['env', 'WEBPACK_SERVE'], argv);
 
   const outputs =
     (isStagingMode || isProductionMode) && !process.env.EXTRACT_CSS_WITHOUT_HASH
@@ -139,12 +149,15 @@ export const mergerWithSharedConfig = (config: Configuration, env: unknown, argv
   };
 
   const plugins = [
+    new Dotenv({
+      path: path.join(paths.root, 'config', 'env', `.env.${getWebpackModeByNodeEnv()}`),
+    }),
     new MiniCssExtractPlugin(
       // Options similar to the same options in webpackOptions.output
       // both options are optional
       outputs.style
     ),
-    new HotModuleReplacementPlugin(),
+    ...(isDevServer ? [new HotModuleReplacementPlugin()] : []),
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
@@ -154,7 +167,7 @@ export const mergerWithSharedConfig = (config: Configuration, env: unknown, argv
   ];
 
   const resolve = {
-    extensions: ['.html', '.htm', '.sass', '.scss', '.css', '.tsx', '.ts', '.js', '.json', '.json5'],
+    extensions: ['.html', '.htm', '.sass', '.scss', '.css', '.tsx', '.ts', 'jsx', '.js', '.json', '.json5'],
   };
 
   const sharedConfig: Configuration = {
@@ -166,7 +179,7 @@ export const mergerWithSharedConfig = (config: Configuration, env: unknown, argv
       : {
           mode: 'development',
         }),
-    target: 'web',
+    target: ['web', 'es5'],
     resolve,
     plugins,
     module: {

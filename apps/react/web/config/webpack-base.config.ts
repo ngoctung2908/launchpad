@@ -44,5 +44,5 @@ export default (env: unknown, argv: unknown) => {
     output: outputs.dll,
     plugins,
   };
-  return mergerWithSharedConfig(config, env, argv);
+  return mergerWithSharedConfig({ config, env, argv, paths });
 };

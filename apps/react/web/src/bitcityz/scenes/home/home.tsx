@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Nav, Tab, Tabs } from 'react-bootstrap';
+import { Button, Nav, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ComingSoon from './components/coming-soon';
 import Pool from './components/pool';
