@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ComingSoon from './components/coming-soon';
 import Pool from './components/pool';
 import Project from './components/project';
+import TablePerformance from './components/table-performance';
 
 const Home: React.FC = () => {
   return (
@@ -167,7 +168,7 @@ const Home: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex-grow-1 d-flex flex-column py-3 p-0 ps-lg-0 p-lg-3 border-left">
+                  <div className="flex-grow-1 d-flex flex-column py-3 p-0 p-lg-3 border-left">
                     <div className="d-flex justify-content-between">
                       <span
                         style={{
@@ -259,6 +260,9 @@ const Home: React.FC = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="col-sm-12 col-md-11 col-lg-11 col-xl-9 mt-5">
+                <TablePerformance className="box-performance-listing" />
               </div>
             </div>
           </section>
