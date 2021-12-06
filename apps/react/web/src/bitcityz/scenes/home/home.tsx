@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Nav, Tab, Tabs } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import ComingSoon from './components/coming-soon';
 import Pool from './components/pool';
 import Project from './components/project';
 
@@ -9,7 +10,7 @@ const Home: React.FC = () => {
     <main className="home">
       <section className="banner">
         <div className="container d-flex flex-column justify-content-center align-items-center">
-          <img src="/assets/img/launch/launchpad.png" />
+          <img className="shadow-text" src="/assets/img/launch/launchpad.png" />
           <h3>BITCITYZ LAUNCHPAD</h3>
           <span className="text-2">CITY OF THE HIDDEN GEMS</span>
           <p>
@@ -51,24 +52,20 @@ const Home: React.FC = () => {
           </div>
         </section>
         <section className="container-lg section-upcoming-project">
-          <img src="/assets/imgs/upcoming-pool.png" />
-          <h3 className="text-large mb-5">Upcoming pool</h3>
+          <div className="d-flex flex-column align-items-center">
+            <img className="shadow-text" src="/assets/imgs/upcoming-pool.png" />
+            <h3 className="text-large mb-5">Upcoming pool</h3>
+          </div>
           <Tab.Container defaultActiveKey="mayorPool">
             <Nav className="d-flex justify-content-between nav col-sm-12 col-md-11 col-lg-11 col-xl-9 mb-3 mx-auto">
               <Nav.Item>
-                <Nav.Link eventKey="mayorPool">
-                  Mayor pool
-                </Nav.Link>
+                <Nav.Link eventKey="mayorPool">Mayor pool</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="elitePool">
-                  Elite pool
-                </Nav.Link>
+                <Nav.Link eventKey="elitePool">Elite pool</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="cityzenPool">
-                  Cityzen poo
-                </Nav.Link>
+                <Nav.Link eventKey="cityzenPool">Cityzen poo</Nav.Link>
               </Nav.Item>
             </Nav>
             <Tab.Content>
@@ -82,15 +79,27 @@ const Home: React.FC = () => {
                   </Button>
                 </div>
               </Tab.Pane>
-              <Tab.Pane eventKey="elitePool">Coming soon</Tab.Pane>
-              <Tab.Pane eventKey="cityzenPool">Coming soon</Tab.Pane>
+              <Tab.Pane eventKey="elitePool">
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                  <div className="col-sm-12 col-md-11 col-lg-11 col-xl-9 mt-3 mb-3">
+                    <ComingSoon />
+                  </div>
+                </div>
+              </Tab.Pane>
+              <Tab.Pane eventKey="cityzenPool">
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                  <div className="col-sm-12 col-md-11 col-lg-11 col-xl-9 mt-3 mb-3">
+                    <ComingSoon />
+                  </div>
+                </div>
+              </Tab.Pane>
             </Tab.Content>
           </Tab.Container>
         </section>
         <div className="sections-launch">
           <section className="section-launch-pool">
             <div className="container d-flex flex-column justify-content-center align-items-center ">
-              <img src="/assets/img/launch/launchpool.png" />
+              <img className="shadow-text" src="/assets/img/launch/launchpool.png" />
               <h3>Launchpool</h3>
               <p>
                 Stake <span className="bold">3 pools</span> at the same time. Get more opportunities to own hidden gems
@@ -105,6 +114,155 @@ const Home: React.FC = () => {
               </Link>
             </div>
           </section>
+
+          <section className="section-performance">
+            <div className="container d-flex flex-column justify-content-center align-items-center ">
+              <img className="shadow-text" src="/assets/imgs/performance.png" />
+              <h3>Performance</h3>
+              <div className="col-sm-12 col-md-11 col-lg-11 col-xl-9 mt-3 box-performance-details">
+                <div className="d-flex justify-content-between">
+                  <div className="d-flex align-items-center">
+                    <img src="/assets/imgs/circle-logo.png" />
+                    <span className="ms-3">BitcityZ</span>
+                  </div>
+                  <div className="d-flex align-items-center list-icon-social">
+                    <div className="ms-3">
+                      <a href="https://t.me/BitCityZSocial" target="_blank">
+                        <img alt="telegram" src="/assets/icons/socials/telegram.svg" className="mrr-24" />
+                      </a>
+                    </div>
+                    <div className="ms-3">
+                      <a href="https://twitter.com/BitCityZ_social" target="_blank">
+                        <img alt="twitter" src="/assets/icons/socials/twitter.svg" className="mrr-24" />
+                      </a>
+                    </div>
+                    <div className="ms-3">
+                      <a href="https://discord.gg/yFwuxBME " target="_blank">
+                        <img alt="discord" src="/assets/icons/socials/discord.svg" className="mrr-24" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between mt-3">
+                  <div className="flex-grow-1 d-flex flex-column py-3 p-0 ps-lg-0 p-lg-3">
+                    <div>Current Price</div>
+                    <div className="d-flex justify-content-between mt-3">
+                      <span
+                        style={{
+                          fontSize: '24px',
+                          lineHeight: '28px',
+                          fontWeight: 700,
+                        }}>
+                        $ 100.56
+                      </span>
+                      <div className="ms-3">
+                        <i className="icon icon-up-arrow"></i>
+                        <span
+                          className="value-as-percent"
+                          style={{
+                            fontWeight: 700,
+                          }}>
+                          3.148%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-grow-1 d-flex flex-column py-3 p-0 ps-lg-0 p-lg-3 border-left">
+                    <div className="d-flex justify-content-between">
+                      <span
+                        style={{
+                          fontWeight: 400,
+                        }}>
+                        Market Cap:
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                        }}>
+                        $300,3M
+                      </span>
+                    </div>
+                    <div className="d-flex justify-content-between mt-3">
+                      <span
+                        style={{
+                          fontWeight: 400,
+                        }}>
+                        Vol (24h):
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                        }}>
+                        $5.8M <i className="icon icon-up-arrow"></i>
+                        <span className="value-as-percent">70%</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex-grow-1 d-flex flex-column py-3 p-0 p-lg-3 border-left">
+                    <div className="d-flex justify-content-between">
+                      <span
+                        style={{
+                          fontWeight: 400,
+                        }}>
+                        Raised:
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                        }}>
+                        $300,3M
+                      </span>
+                    </div>
+                    <div className="d-flex justify-content-between mt-3">
+                      <span
+                        style={{
+                          fontWeight: 400,
+                        }}>
+                        IDO Price:
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                        }}>
+                        $1
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex-grow-1 d-flex flex-column py-3 p-0 p-lg-3 border-left pe-lg-0">
+                    <div className="d-flex justify-content-between">
+                      <span
+                        style={{
+                          fontWeight: 400,
+                        }}>
+                        IDO ROI:
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                        }}>
+                        298,96x
+                      </span>
+                    </div>
+                    <div className="d-flex justify-content-between align-items-center mt-3">
+                      <span
+                        style={{
+                          fontWeight: 400,
+                        }}>
+                        Native Token:
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                        }}>
+                        <img src="/assets/imgs/circle-logo.png" width="12" height="12" /> BCTZ
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <section className="section-launch-projects">
             <div className="container d-flex flex-column justify-content-center align-items-center">
               <h3>

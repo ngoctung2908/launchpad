@@ -44,7 +44,13 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <div className="mt-3 mb-3">
-            <span>Copyright © BitcityZ 2021</span>
+            <span>Join our Telegram Official Global Group</span>
+            <div className="d-flex align-items-center mt-3">
+              <img alt="telegram" src="/assets/icons/socials/telegram.svg" width="36" height="36" />{' '}
+              <a className="ms-3" href="https://t.me/BitCityZSocial" target="_blank">
+                <img alt="telegram" src="/assets/imgs/bitcityz-global-group.png" />
+              </a>
+            </div>
           </div>
         </div>
         <div className="card-right">

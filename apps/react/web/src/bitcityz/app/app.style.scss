@@ -78,3 +78,23 @@ main {
 .btn-see-more {
   width: 200px;
 }
+
+.box-coming-soon {
+  position: relative;
+  min-height: 500px;
+  &::before {
+    content: ' ';
+    border: 1px solid #2ce7ff;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: linear-gradient(114.49deg, rgba(255, 255, 255, 0.165) -21.49%, rgba(255, 255, 255, 0) 111.75%),
+      url('/assets/imgs/coming-soon-bg.png') center center no-repeat;
+    opacity: 0.5;
+    backdrop-filter: blur(140px px);
+    border-radius: 16px;
+    z-index: -1;
+  }
+}
