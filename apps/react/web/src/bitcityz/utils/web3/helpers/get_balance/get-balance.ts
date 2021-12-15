@@ -1,7 +1,9 @@
+import Web3 from 'web3';
+import {AbiItem} from 'web3-utils'
 import { getCurrentAccount as getCurrentAccount } from '../get-current-account';
 
-export const getBalance = async (contractAddress: string, address?: string) => {
-  const minABI = [
+export const getBalance = async (web3Instance: Web3, contractAddress: string, address: string | null) => {
+  const minABI: AbiItem[] = [
     // balanceOf
     {
       constant: true,
@@ -20,12 +22,12 @@ export const getBalance = async (contractAddress: string, address?: string) => {
     },
   ];
   if (!address) {
-    address = await getCurrentAccount();
+    address = await getCurrentAccount(web3Instance);
   }
   if (address) {
-    const contract = new window.web3.eth.Contract(minABI, contractAddress);
+    const contract = new web3Instance.eth.Contract(minABI, contractAddress);
     const balanceWei = await contract.methods.balanceOf(address).call();
-    const balance = window.web3.utils.fromWei(balanceWei, 'ether');
+    const balance = web3Instance.utils.fromWei(balanceWei, 'ether');
     return balance;
   }
   return null;

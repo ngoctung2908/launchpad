@@ -13,9 +13,9 @@ export default (env: unknown, argv: unknown) => {
       // support old browser, IE
       'core-js',
 
-      // // js
-      // // plugins
-      // 'clsx',
+      // js
+      // plugins
+      'clsx',
 
       // react-all
       'react',
@@ -23,8 +23,9 @@ export default (env: unknown, argv: unknown) => {
       'react-router',
       'react-router-dom',
       'react-helmet',
+      'react-table',
 
-      // // style
+      // style
       // 'animate.css',
       './src/bitcityz/style/bootstrap.scss',
     ],

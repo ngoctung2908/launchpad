@@ -1,3 +1,4 @@
+import path from 'path';
 import toml from 'toml';
 import yaml from 'yamljs';
 import json5 from 'json5';
@@ -13,7 +14,6 @@ import Dotenv from 'dotenv-webpack';
 import { pathOr } from 'ramda';
 
 import { isStagingMode, isProductionMode, isDevelopmentMode, getWebpackModeByNodeEnv } from './helpers';
-import path from 'path';
 
 export const mergerWithSharedConfig: (params: {
   config: Configuration;

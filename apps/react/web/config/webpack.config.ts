@@ -51,7 +51,6 @@ export default (env: unknown, argv: unknown) => {
     resolve: {
       fallback: {
         stream: require.resolve('stream-browserify'),
-        buffer: require.resolve('buffer'),
         crypto: false,
         http: false,
         https: false,
@@ -60,6 +59,12 @@ export default (env: unknown, argv: unknown) => {
     },
     output: outputs.script,
     plugins: [
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer'],
+      }),
+      new webpack.ProvidePlugin({
+        process: 'process/browser',
+      }),
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: ['**/*', '!base/**'],
       }),
@@ -115,7 +120,7 @@ export default (env: unknown, argv: unknown) => {
     devServer: {
       static: paths.dist,
       historyApiFallback: true, // true for index.html upon 404, object for multiple paths
-      port: 4000,
+      port: 4001,
       https: false, // true for self-signed, object for cert authority
       hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
       // compress: true, // enable gzip compression
