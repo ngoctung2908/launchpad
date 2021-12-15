@@ -1,7 +1,8 @@
-FROM node:16.13.0-alpine as build-stage
+FROM node:16.13.1-alpine as build-stage
+RUN apk add git
 WORKDIR /app
 COPY . .
-RUN yarn install && yarn upgrade 
+RUN yarn install
 RUN yarn build
 
 FROM nginx:1.21
