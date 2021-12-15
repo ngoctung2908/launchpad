@@ -1,0 +1,76 @@
+.sticky {
+  position: absolute;
+  z-index: 1;
+}
+.navbar-brand,
+.navbar-toggler {
+  z-index: 1;
+}
+.navbar-light .navbar-brand {
+  margin-right: 32px;
+}
+.navbar-light .navbar-nav .nav-link {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #f5f5f5 !important;
+  margin: 0px 8px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+}
+.btn-connect-wallet {
+  flex-grow: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding: 4px 16px;
+  border-radius: 16px;
+}
+.btn--icon {
+  margin-right: 8px;
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url('../../assets/icons/textalign-right.svg');
+}
+
+.sticky-header {
+  position: fixed;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1200px) {
+  .navbar-nav {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .navbar-collapse {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 80px;
+    &.show {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 54px);
+      align-items: self-start;
+      justify-content: start;
+      background-image: url('../../assets/imgs/space-nebula-3d-illustration-use-with-projects-science-research-education 1.png');
+      background-size: cover;
+      background-position: bottom right;
+      background-repeat: no-repeat;
+      background-color: #050d1f;
+    }
+  }
+  .btn-connect-wallet {
+    margin: 0 auto;
+  }
+}

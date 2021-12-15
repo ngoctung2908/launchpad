@@ -1,13 +1,12 @@
-# Getting Started 
-## Available Scripts
+# 🥞 Pancake Frontend
 
-### `yarn install`
-Install all the neccessary packages
-### `yarn upgrade`
-yarn upgrade-interactive --latest
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7bebf1a3-be7b-4165-afd1-446256acd5e3/deploy-status)](https://app.netlify.com/sites/pancake-prod/deploys)
 
-### `yarn build:web`
-When you need to build your script before deployment, the dist folder is 'apps/react/web/lib'
+This project contains the main features of the pancake application.
 
-### `yarn watch`
-Most likely you won't have to use this, unless you are told to update the packages
+If you want to contribute, please refer to the [contributing guidelines](./CONTRIBUTING.md) of this project.
+
+## Documentation
+
+- [Info](doc/Info.md)
+- [Cypress tests](doc/Cypress.md)
