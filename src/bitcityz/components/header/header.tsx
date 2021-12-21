@@ -3,7 +3,7 @@ import { useWalletModal } from '@pancakeswap/uikit'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 import WalletModal from '../modal/WalletModal/WalletModal'
 
@@ -53,7 +53,9 @@ function Header() {
         style={{ backgroundImage: `url(${bg})` }}
       >
         <nav className="layout-container h-[70px] flex items-center">
-          <img src={logo} className="mr-8" alt="" />
+          <Link to="/">
+            <img src={logo} className="mr-8" alt="" />
+          </Link>
           <ul className="flex items-center gap-x-4 list-none">
             <li>
               <a href="aa" className="text-sm text-[#F5F5F5] font-semibold">
@@ -61,9 +63,9 @@ function Header() {
               </a>
             </li>
             <li>
-              <a href="aa" className="text-sm text-[#F5F5F5] font-semibold">
+              <Link to="/launchpool" className="text-sm text-[#F5F5F5] font-semibold">
                 Launchpool
-              </a>
+              </Link>
             </li>
             <li>
               <a href="aa" className="text-sm text-[#F5F5F5] font-semibold">
