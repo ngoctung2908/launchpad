@@ -13,7 +13,7 @@ import {
   LinkExternal,
   Text,
   useModal,
-} from '@bitcityz/uikit'
+} from '@pancakeswap/uikit'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
@@ -60,7 +60,7 @@ const CreateProposal = () => {
   const { account } = useWeb3React()
   const initialBlock = useInitialBlock()
   const { push } = useHistory()
-  const { library } = useWeb3Provider()
+  const { library, connector } = useWeb3Provider()
   const { toastSuccess, toastError } = useToast()
   const [onPresentVoteDetailsModal] = useModal(<VoteDetailsModal block={state.snapshot} />)
   const { name, body, choices, startDate, startTime, endDate, endTime, snapshot } = state
@@ -90,7 +90,7 @@ const CreateProposal = () => {
         },
       })
 
-      const sig = await signMessage(library, account, proposal)
+      const sig = await signMessage(connector, library, account, proposal)
 
       if (sig) {
         const msg: Message = { address: account, msg: proposal, sig }

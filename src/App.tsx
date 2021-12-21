@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
-import { ResetCSS } from '@bitcityz/uikit'
+import { ResetCSS } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
@@ -12,7 +12,7 @@ import { useFetchProfile } from 'state/profile/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
 // import { nftsBaseUrl } from 'views/Nft/market/constants'
 import GlobalStyle from './style/Global'
-// import Menu from './components/Menu'
+import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
 import { ToastListener } from './contexts/ToastsContext'
 import PageLoader from './components/Loader/PageLoader'
@@ -22,7 +22,6 @@ import history from './routerHistory'
 // Views included in the main bundle
 // import Pools from './views/Pools'
 // import Swap from './views/Swap'
-import LaunchPool1 from './views/LaunchPool'
 // import {
 //   RedirectDuplicateTokenIds,
 //   RedirectOldAddLiquidityPathStructure,
@@ -31,15 +30,14 @@ import LaunchPool1 from './views/LaunchPool'
 // import RedirectOldRemoveLiquidityPathStructure from './views/RemoveLiquidity/redirects'
 // import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
 import { useInactiveListener } from './hooks/useInactiveListener'
-import { Footer, Header } from './bitcityz/components'
+import useSentryUser from './hooks/useSentryUser'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page
-// const Home = lazy(() => import('./views/Home'))
+import { Footer, Header } from './bitcityz/components'
+
 const Home = lazy(() => import('./bitcityz/scenes/home/home'))
-const LaunchPool = lazy(() =>
-  import('./bitcityz/scenes/launch_pool').then((module: any) => ({ default: module.LaunchPool })),
-)
+const LaunchPool = lazy(() => import('./bitcityz/scenes/launch_pool/launchpool'))
 // const Farms = lazy(() => import('./views/Farms'))
 // const FarmAuction = lazy(() => import('./views/FarmAuction'))
 // const Lottery = lazy(() => import('./views/Lottery'))
@@ -78,6 +76,7 @@ const App: React.FC = () => {
   useScrollOnRouteChange()
   useUserAgent()
   useInactiveListener()
+  useSentryUser()
 
   return (
     <Router history={history}>
@@ -92,9 +91,6 @@ const App: React.FC = () => {
           </Route>
           <Route path="/launchpool" exact>
             <LaunchPool />
-          </Route>
-          <Route path="/launchpool1" exact>
-            <LaunchPool1 />
           </Route>
           {/* <Route exact path="/farms/auction">
               <FarmAuction />
@@ -142,9 +138,9 @@ const App: React.FC = () => {
           {/* NFT */}
           {/* <Route path="/nfts">
               <NftMarket />
-            </Route>
+            </Route> */}
 
-            <Route path="/pancake-squad">
+          {/* <Route path="/pancake-squad">
               <PancakeSquad />
             </Route> */}
 

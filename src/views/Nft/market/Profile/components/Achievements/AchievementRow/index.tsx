@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, Button, Flex } from '@bitcityz/uikit'
+import { AutoRenewIcon, Button, Flex } from '@pancakeswap/uikit'
 import { Achievement } from 'state/types'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
@@ -10,6 +10,7 @@ import { ToastDescriptionWithTx } from 'components/Toast'
 import AchievementTitle from 'views/Nft/market/Profile/components/Achievements/AchievementTitle'
 import AchievementAvatar from 'views/Nft/market/Profile/components/Achievements/AchievementAvatar'
 import AchievementDescription from 'views/Nft/market/Profile/components/Achievements/AchievementDescription'
+import { logError } from 'utils/sentry'
 import PointsLabel from './PointsLabel'
 
 interface AchievementRowProps {
@@ -70,6 +71,7 @@ const AchievementRow: React.FC<AchievementRowProps> = ({ achievement, onCollectS
         toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
       }
     } catch (error) {
+      logError(error)
       toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
     } finally {
       setIsCollecting(false)

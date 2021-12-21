@@ -1,6 +1,6 @@
 import React from 'react'
 import orderBy from 'lodash/orderBy'
-import { Button, ChevronRightIcon, Flex, Grid, Heading, Text } from '@bitcityz/uikit'
+import { Button, ChevronRightIcon, Flex, Grid, Heading, Text } from '@pancakeswap/uikit'
 import { Link } from 'react-router-dom'
 import { useGetCollections } from 'state/nftMarket/hooks'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
@@ -35,7 +35,7 @@ const Collections = () => {
         </Button>
       </Flex>
       <Grid gridGap="16px" gridTemplateColumns={['1fr', '1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} mb="64px">
-        {orderedCollections.slice(0, 5).map((collection) => {
+        {orderedCollections.slice(0, 6).map((collection) => {
           return (
             <HotCollectionCard
               key={collection.address}
@@ -53,15 +53,6 @@ const Collections = () => {
             </HotCollectionCard>
           )
         })}
-        <HotCollectionCard
-          disabled
-          bgSrc="/images/collections/no-collection-banner-sm.png"
-          collectionName={t('Coming Soon')}
-        >
-          <Text color="textDisabled" fontSize="12px">
-            {t('More Collections are on their way!')}
-          </Text>
-        </HotCollectionCard>
       </Grid>
     </>
   )

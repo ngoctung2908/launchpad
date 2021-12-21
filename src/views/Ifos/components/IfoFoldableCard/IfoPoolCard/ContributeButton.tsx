@@ -1,7 +1,7 @@
 import React from 'react'
 import { useBlock } from 'state/block/hooks'
 import BigNumber from 'bignumber.js'
-import { Button, useModal } from '@bitcityz/uikit'
+import { Button, useModal } from '@pancakeswap/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Ifo, PoolIds } from 'config/constants/types'
 import { WalletIfoData, PublicIfoData } from 'views/Ifos/types'
@@ -9,8 +9,8 @@ import { useTranslation } from 'contexts/Localization'
 import useTokenBalance from 'hooks/useTokenBalance'
 import useToast from 'hooks/useToast'
 import { ToastDescriptionWithTx } from 'components/Toast'
-import ContributeModal from './ContributeModal'
 import GetTokenModal from './GetTokenModal'
+import ContributeModal from './ContributeModal'
 
 interface Props {
   poolId: PoolIds
@@ -44,6 +44,7 @@ const ContributeButton: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletI
   const [onPresentContributeModal] = useModal(
     <ContributeModal
       poolId={poolId}
+      creditLeft={walletIfoData.ifoCredit?.creditLeft}
       ifo={ifo}
       publicIfoData={publicIfoData}
       walletIfoData={walletIfoData}
@@ -57,6 +58,7 @@ const ContributeButton: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletI
 
   const isDisabled =
     isPendingTx ||
+    (walletIfoData.ifoCredit?.creditLeft && walletIfoData.ifoCredit?.creditLeft.isLessThanOrEqualTo(0)) ||
     (limitPerUserInLP.isGreaterThan(0) && amountTokenCommittedInLP.isGreaterThanOrEqualTo(limitPerUserInLP))
 
   return (

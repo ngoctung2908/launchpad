@@ -1,31 +1,105 @@
-import React from 'react'
-import { Container, Nav, Navbar, Button } from 'react-bootstrap'
-import UserMenu from '../../../components/Menu/UserMenu'
+import React, { useState } from 'react'
+import { useWalletModal } from '@pancakeswap/uikit'
+import useAuth from 'hooks/useAuth'
+import { useTranslation } from 'contexts/Localization'
+import { useWeb3React } from '@web3-react/core'
+import { useLocation } from 'react-router-dom'
 
-// imgs
-import logoSvg from '../../assets/img/launch/logo.svg'
+import WalletModal from '../modal/WalletModal/WalletModal'
 
-const Header: React.FC = () => {
+import HomeHeader from '../../scenes/home/components/HomeHeader'
+import LaunchpoolHeader from '../../scenes/launch_pool/components/LaunchpoolHeader'
+
+import '../../assets/index.css'
+import bg from '../../assets/images/bg-header.png'
+import logo from '../../assets/images/logo.svg'
+import walletSvg from '../../assets/images/wallet.svg'
+
+function Header() {
+  const [showWalletModal, setShowWalletModal] = useState(false)
+  const location = useLocation()
+  const currentPath = location.pathname
+
+  const { login, logout } = useAuth()
+  const { t } = useTranslation()
+  const { onPresentConnectModal } = useWalletModal(login, logout, t)
+  const { account } = useWeb3React()
+
+  const truncateAddress = (address) => {
+    if (!address || address.length < 10) return address
+
+    const separator = '...'
+    const sepLen = separator.length
+
+    const charsToShow = address.length - sepLen
+    const frontChars = Math.ceil(charsToShow / 5)
+    const backChars = Math.ceil(charsToShow / 5)
+    return address.substr(0, frontChars) + separator + address.substr(address.length - backChars)
+  }
+
+  const _handleShowWalletModal = () => {
+    setShowWalletModal(true)
+  }
+
+  const _handleCloseModal = () => {
+    setShowWalletModal(false)
+  }
+
   return (
-    <header className="w-100 sticky">
-      <Navbar expand="xl">
-        <Container>
-          <Navbar.Brand href="/">
-            <img className="d-inline-block align-top" alt="logo" src={logoSvg} />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/">Launchpad</Nav.Link>
-              <Nav.Link href="/launchpool">Launchpool</Nav.Link>
-              <Nav.Link href="/github">Github</Nav.Link>
-              <Nav.Link href="/document">Document</Nav.Link>
-            </Nav>
-            <UserMenu />
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </header>
+    <>
+      {showWalletModal && <WalletModal onClose={_handleCloseModal} />}
+      <header
+        className="bg-cover bg-center bg-no-repeat relative bg-[#050e21]"
+        style={{ backgroundImage: `url(${bg})` }}
+      >
+        <nav className="layout-container h-[70px] flex items-center">
+          <img src={logo} className="mr-8" alt="" />
+          <ul className="flex items-center gap-x-4 list-none">
+            <li>
+              <a href="aa" className="text-sm text-[#F5F5F5] font-semibold">
+                Launchpad
+              </a>
+            </li>
+            <li>
+              <a href="aa" className="text-sm text-[#F5F5F5] font-semibold">
+                Launchpool
+              </a>
+            </li>
+            <li>
+              <a href="aa" className="text-sm text-[#F5F5F5] font-semibold">
+                Github
+              </a>
+            </li>
+            <li>
+              <a href="aa" className="text-sm text-[#F5F5F5] font-semibold">
+                Document
+              </a>
+            </li>
+          </ul>
+          {!account ? (
+            <button
+              type="button"
+              onClick={onPresentConnectModal}
+              className="ml-auto text-[#212121] text-sm font-semibold flex items-center bg-[#2CE7FF] shadow-blue border-none rounded-2xl py-[7px] px-4"
+            >
+              <img src={walletSvg} className="mr-3" alt="" />
+              <span>Connect wallet</span>
+            </button>
+          ) : (
+            <button
+              onClick={() => _handleShowWalletModal()}
+              type="button"
+              className="ml-auto text-[#212121] text-sm font-semibold flex items-center bg-[#2CE7FF] shadow-blue border-none rounded-2xl py-[7px] px-4"
+            >
+              <img src={walletSvg} className="mr-3" alt="" />
+              <span>{truncateAddress(account)}</span>
+            </button>
+          )}
+        </nav>
+        {currentPath === '/' && <HomeHeader />}
+        {currentPath === '/launchpool' && <LaunchpoolHeader />}
+      </header>
+    </>
   )
 }
 

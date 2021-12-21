@@ -15,7 +15,7 @@ import {
   Box,
   ModalCloseButton,
   Skeleton,
-} from '@bitcityz/uikit'
+} from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { REWARD_RATE } from 'state/predictions/config'
@@ -30,6 +30,7 @@ import { ToastDescriptionWithTx } from 'components/Toast'
 import { useGetHistory, useGetIsFetchingHistory } from 'state/predictions/hooks'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { formatNumber } from 'utils/formatBalance'
+import { logError } from 'utils/sentry'
 import { getPayout } from './History/helpers'
 
 interface CollectRoundWinningsModalProps extends InjectedModalProps {
@@ -126,6 +127,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({ o
       )
     } catch (error) {
       console.error('Unable to claim winnings', error)
+      logError(error)
       toastError(
         t('Error'),
         error?.data?.message || t('Please try again. Confirm the transaction and make sure you are paying enough gas!'),

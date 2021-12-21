@@ -12,7 +12,7 @@ import {
   Text,
   Th,
   useMatchBreakpoints,
-} from '@bitcityz/uikit'
+} from '@pancakeswap/uikit'
 import { getCollectionActivity, getNftsFromDifferentCollectionsApi } from 'state/nftMarket/helpers'
 import Container from 'components/Layout/Container'
 import TableLoader from 'components/TableLoader'

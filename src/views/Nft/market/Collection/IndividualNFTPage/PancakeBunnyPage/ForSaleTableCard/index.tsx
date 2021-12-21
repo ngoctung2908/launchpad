@@ -13,7 +13,7 @@ import {
   ArrowDownIcon,
   Button,
   Spinner,
-} from '@bitcityz/uikit'
+} from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { NftToken } from 'state/nftMarket/types'

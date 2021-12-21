@@ -14,9 +14,11 @@ import {
   getSouschefContract,
   getClaimRefundContract,
   getTradingCompetitionContract,
+  getTradingCompetitionContractV2,
   getEasterNftContract,
   getErc721Contract,
   getCakeVaultContract,
+  getIfoPoolContract,
   getPredictionsContract,
   getChainlinkOracleContract,
   getSouschefV2Contract,
@@ -31,14 +33,14 @@ import {
   getPancakeSquadContract,
   getErc721CollectionContract,
 } from 'utils/contractHelpers'
-import { getMulticallAddress, getLaunchPoolAddress } from 'utils/addressHelpers'
+import { getMulticallAddress } from 'utils/addressHelpers'
+import { VaultKey } from 'state/types'
 
 // Imports below migrated from Exchange useContract.ts
 import { Contract } from '@ethersproject/contracts'
 import { ChainId, WETH } from '@pancakeswap/sdk'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import ENS_PUBLIC_RESOLVER_ABI from '../config/abi/ens-public-resolver.json'
-import launchPoolAbi from '../config/abi/launchPool.json'
 import ENS_ABI from '../config/abi/ens-registrar.json'
 import { ERC20_BYTES32_ABI } from '../config/abi/erc20'
 import ERC20_ABI from '../config/abi/erc20.json'
@@ -133,14 +135,36 @@ export const useTradingCompetitionContract = () => {
   return useMemo(() => getTradingCompetitionContract(library.getSigner()), [library])
 }
 
+export const useTradingCompetitionContractV2 = (withSignerIfPossible = true) => {
+  const { library, account } = useActiveWeb3React()
+  return useMemo(
+    () => getTradingCompetitionContractV2(withSignerIfPossible ? getProviderOrSigner(library, account) : null),
+    [library, withSignerIfPossible, account],
+  )
+}
+
 export const useEasterNftContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getEasterNftContract(library.getSigner()), [library])
 }
 
+export const useVaultPoolContract = (vaultKey: VaultKey) => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => {
+    return vaultKey === VaultKey.CakeVault
+      ? getCakeVaultContract(library.getSigner())
+      : getIfoPoolContract(library.getSigner())
+  }, [library, vaultKey])
+}
+
 export const useCakeVaultContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getCakeVaultContract(library.getSigner()), [library])
+}
+
+export const useIfoPoolContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getIfoPoolContract(library.getSigner()), [library])
 }
 
 export const usePredictionsContract = () => {
@@ -269,8 +293,4 @@ export function usePairContract(pairAddress?: string, withSignerIfPossible?: boo
 
 export function useMulticallContract(): Contract | null {
   return useContract(getMulticallAddress(), multiCallAbi, false)
-}
-
-export function useLaunchPoolContract(): Contract | null {
-  return useContract(getLaunchPoolAddress(), launchPoolAbi, true)
 }

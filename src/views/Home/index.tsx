@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from '@bitcityz/uikit'
+import { Flex } from '@pancakeswap/uikit'
 import PageSection from 'components/PageSection'
 import { useWeb3React } from '@web3-react/core'
 import useTheme from 'hooks/useTheme'
@@ -16,7 +16,7 @@ import Footer from './components/Footer'
 import CakeDataRow from './components/CakeDataRow'
 import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
 import UserBanner from './components/UserBanner'
-import FarmAuctionsBanner from './components/Banners/FarmAuctionsBanner'
+import CompetitionBanner from './components/Banners/CompetitionBanner'
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
           mt={[account ? '0' : '-16px', null, null, account ? '0' : '-48px']}
           pb="24px"
         >
-          <FarmAuctionsBanner />
+          <CompetitionBanner />
         </Flex>
         <Hero />
       </StyledHeroSection>

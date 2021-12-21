@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Text, Heading, Image } from '@bitcityz/uikit'
+import { Flex, Text, Heading, Image } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import FlipperBunny from '../../pngs/flippers.png'
 
@@ -30,7 +30,7 @@ const PrizesText = () => {
       </Heading>
       <Text>
         {t(
-          'The final winning team will be the team with the highest total combined volume of their top 500 members at the end of the competition period.',
+          'The final winning team will be the team with the highest total volume score at the end of the competition period.',
         )}
       </Text>
       <ImageWrapper>

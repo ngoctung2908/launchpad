@@ -43,12 +43,20 @@ export default {
     56: '0xd718baa0B1F4f70dcC8458154042120FFE0DEFFA',
     97: '0xC787F45B833721ED3aC46E99b703B3E1E01abb97',
   },
+  tradingCompetitionV2: {
+    56: '0x9b872C05C38A3563393668839659bA336Cc969B2',
+    97: '',
+  },
   easterNft: {
     56: '0x23c41D28A239dDCAABd1bb1deF8d057189510066',
     97: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
   },
   cakeVault: {
     56: '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC',
+    97: '',
+  },
+  ifoPool: {
+    56: '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8',
     97: '',
   },
   predictions: {
@@ -90,9 +98,5 @@ export default {
   pancakeSquad: {
     56: '0x0a8901b0E25DEb55A87524f0cC164E9644020EBA',
     97: '0xfC0c3F11fDA72Cb9A56F28Ec8D44C0ae4B3ABF86',
-  },
-  launchPool: {
-    56: '0x0a8901b0E25DEb55A87524f0cC164E9644020EBA',
-    97: '0xa8B9861222Ee5321B7052642695269E18cbD07AA',
   },
 }

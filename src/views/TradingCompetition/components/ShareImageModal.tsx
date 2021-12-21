@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Modal, Flex, Button, Text, Skeleton, Box } from '@bitcityz/uikit'
+import { Modal, Flex, Button, Text, Skeleton, Box } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import FlippersShare from '../pngs/flippers-share.png'
@@ -67,7 +67,7 @@ const ShareImageModal: React.FC<YourScoreProps> = ({ onDismiss, profile, userLea
     bgImagEl.onload = () => setBgImage(bgImagEl)
 
     const profileImageEl = new Image()
-    profileImageEl.src = profile.nft?.image?.thumbnail
+    profileImageEl.src = `${profile.nft?.image?.thumbnail}?d=${new Date().getTime()}`
     profileImageEl.crossOrigin = 'Anonymous'
     profileImageEl.onload = () => setProfileImage(profileImageEl)
 
@@ -109,7 +109,7 @@ const ShareImageModal: React.FC<YourScoreProps> = ({ onDismiss, profile, userLea
 
   const downloadImage = () => {
     const link = document.createElement('a')
-    link.download = `easter-battle-${profile.username}.png`
+    link.download = `battle-${profile.username}.png`
     link.href = imageFromCanvas
     link.click()
   }

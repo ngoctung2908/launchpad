@@ -12,14 +12,14 @@ import {
   CalculateIcon,
   IconButton,
   Skeleton,
-} from '@bitcityz/uikit'
+} from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { BIG_TEN } from 'utils/bigNumber'
 import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useCakeVault } from 'state/pools/hooks'
-import { useCakeVaultContract } from 'hooks/useContract'
+import { useVaultPoolByKey } from 'state/pools/hooks'
+import { useVaultPoolContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
 import useWithdrawalFeeTimer from 'views/Pools/hooks/useWithdrawalFeeTimer'
 import BigNumber from 'bignumber.js'
@@ -30,7 +30,9 @@ import { DeserializedPool } from 'state/types'
 import { getInterestBreakdown } from 'utils/compoundApyHelpers'
 import RoiCalculatorModal from 'components/RoiCalculatorModal'
 import { ToastDescriptionWithTx } from 'components/Toast'
+import { vaultPoolConfig } from 'config/constants/pools'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+import { logError } from 'utils/sentry'
 import { convertCakeToShares, convertSharesToCake } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
@@ -58,10 +60,6 @@ const AnnualRoiDisplay = styled(Text)`
   text-overflow: ellipsis;
 `
 
-const callOptions = {
-  gasLimit: 380000,
-}
-
 const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   pool,
   stakingMax,
@@ -70,14 +68,14 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   onDismiss,
 }) => {
   const dispatch = useAppDispatch()
-  const { stakingToken, earningToken, apr, stakingTokenPrice, earningTokenPrice } = pool
+  const { stakingToken, earningToken, apr, rawApr, stakingTokenPrice, earningTokenPrice, vaultKey } = pool
   const { account } = useWeb3React()
-  const cakeVaultContract = useCakeVaultContract()
+  const vaultPoolContract = useVaultPoolContract(pool.vaultKey)
   const { callWithGasPrice } = useCallWithGasPrice()
   const {
     userData: { lastDepositedTime, userShares },
     pricePerFullShare,
-  } = useCakeVault()
+  } = useVaultPoolByKey(pool.vaultKey)
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
@@ -90,11 +88,15 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
   const usdValueStaked = new BigNumber(stakeAmount).times(cakePriceBusd)
   const formattedUsdValueStaked = cakePriceBusd.gt(0) && stakeAmount ? formatNumber(usdValueStaked.toNumber()) : ''
 
+  const callOptions = {
+    gasLimit: vaultPoolConfig[pool.vaultKey].gasLimit,
+  }
+
   const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
 
   const interestBreakdown = getInterestBreakdown({
     principalInUSD: !usdValueStaked.isNaN() ? usdValueStaked.toNumber() : 0,
-    apr,
+    apr: vaultKey ? rawApr : apr,
     earningTokenPrice,
     performanceFee,
   })
@@ -135,7 +137,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
 
     if (isWithdrawingAll) {
       try {
-        const tx = await callWithGasPrice(cakeVaultContract, 'withdrawAll', undefined, callOptions)
+        const tx = await callWithGasPrice(vaultPoolContract, 'withdrawAll', undefined, callOptions)
         const receipt = await tx.wait()
         if (receipt.status) {
           toastSuccess(
@@ -149,6 +151,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
           dispatch(fetchCakeVaultUserData({ account }))
         }
       } catch (error) {
+        logError(error)
         toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
         setPendingTx(false)
       }
@@ -157,7 +160,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
       try {
         const tx = await callWithGasPrice(
-          cakeVaultContract,
+          vaultPoolContract,
           'withdraw',
           [shareStakeToWithdraw.sharesAsBigNumber.toString()],
           callOptions,
@@ -175,6 +178,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
           dispatch(fetchCakeVaultUserData({ account }))
         }
       } catch (error) {
+        logError(error)
         toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
         setPendingTx(false)
       }
@@ -186,7 +190,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
     try {
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-      const tx = await callWithGasPrice(cakeVaultContract, 'deposit', [convertedStakeAmount.toString()], callOptions)
+      const tx = await callWithGasPrice(vaultPoolContract, 'deposit', [convertedStakeAmount.toString()], callOptions)
       const receipt = await tx.wait()
       if (receipt.status) {
         toastSuccess(
@@ -200,6 +204,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         dispatch(fetchCakeVaultUserData({ account }))
       }
     } catch (error) {
+      logError(error)
       toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
       setPendingTx(false)
     }
@@ -221,7 +226,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
       <RoiCalculatorModal
         earningTokenPrice={earningTokenPrice}
         stakingTokenPrice={stakingTokenPrice}
-        apr={apr}
+        apr={vaultKey ? rawApr : apr}
         linkLabel={t('Get %symbol%', { symbol: stakingToken.symbol })}
         linkHref={getTokenLink}
         stakingTokenBalance={cakeAsBigNumber.plus(stakingMax)}
@@ -282,7 +287,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         </StyledButton>
       </Flex>
       {isRemovingStake && hasUnstakingFee && (
-        <FeeSummary stakingTokenSymbol={stakingToken.symbol} stakeAmount={stakeAmount} />
+        <FeeSummary vaultKey={vaultKey} stakingTokenSymbol={stakingToken.symbol} stakeAmount={stakeAmount} />
       )}
       {!isRemovingStake && (
         <Flex mt="24px" alignItems="center" justifyContent="space-between">

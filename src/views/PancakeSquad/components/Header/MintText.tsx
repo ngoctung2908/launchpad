@@ -1,4 +1,4 @@
-import { Flex, lightColors, Text } from '@bitcityz/uikit'
+import { Flex, lightColors, Text } from '@pancakeswap/uikit'
 import { ContextApi } from 'contexts/Localization/types'
 import React from 'react'
 import { SaleStatusEnum, UserStatusEnum } from '../../types'

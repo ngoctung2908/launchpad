@@ -1,69 +1,53 @@
-import React from 'react'
-import telegramSvg from '../../assets/icons/socials/telegram.svg'
-import twitterSvg from '../../assets/icons/socials/twitter.svg'
-import mediumSvg from '../../assets/icons/socials/medium.svg'
-import discordSvg from '../../assets/icons/socials/discord.svg'
-import youtubeSvg from '../../assets/icons/socials/youtube.svg'
-import facebookSvg from '../../assets/icons/socials/facebook.svg'
-import bitcityzGlobalGroupPng from '../../assets/imgs/bitcityz-global-group.png'
-import phonePng from '../../assets/imgs/phone.png'
+import React, { useState } from 'react'
 
-const Footer: React.FC = () => {
+import '../../assets/index.css'
+import telegramIcon from '../../assets/images/telegram.svg'
+import twitterIcon from '../../assets/images/twitter.svg'
+import mediumIcon from '../../assets/images/medium.png'
+import discordIcon from '../../assets/images/discord.svg'
+import youtubeIcon from '../../assets/images/youtube.svg'
+import facebookIcon from '../../assets/images/facebook.svg'
+import bitcity from '../../assets/images/footer-bitcity.png'
+import bg from '../../assets/images/bg-footer.png'
+
+function Footer() {
   return (
-    <footer className="subscriber">
-      <div className="footer_inner container d-flex justify-content-between flex-wrap">
-        <div className="card card-left">
-          <div id="footerHSForm" />
-          <div className="icon-social">
-            <div className="mt-3 mb-3">
-              <span className="sub-title">Follow us on our channels</span>
-            </div>
-            <div className="d-flex list-icon-social">
-              <div>
-                <a href="https://t.me/BitCityZSocial" target="_blank" rel="noreferrer">
-                  <img alt="telegram" src={telegramSvg} className="mrr-24" />
-                </a>
-              </div>
-              <div>
-                <a href="https://twitter.com/BitCityZ_social" target="_blank" rel="noreferrer">
-                  <img alt="twitter" src={twitterSvg} className="mrr-24" />
-                </a>
-              </div>
-              <div>
-                <a href="https://medium.com/@bitcityz.social" target="_blank" rel="noreferrer">
-                  <img alt="medium" src={mediumSvg} className="mrr-24" />
-                </a>
-              </div>
-              <div>
-                <a href="https://discord.gg/yFwuxBME " target="_blank" rel="noreferrer">
-                  <img alt="discord" src={discordSvg} className="mrr-24" />
-                </a>
-              </div>
-              <div>
-                <a href="https://www.youtube.com/channel/UCC1X5Hsg0YQYkDsp6K4SzDQ" target="_blank" rel="noreferrer">
-                  <img alt="youtube" src={youtubeSvg} className="mrr-24" />
-                </a>
-              </div>
-              <div>
-                <a href="https://www.facebook.com/bitcityz/ " target="_blank" rel="noreferrer">
-                  <img alt="facebook" src={facebookSvg} className="mrr-24" />
-                </a>
-              </div>
-            </div>
+    <footer
+      className="bg-cover bg-center bg-no-repeat pt-[84px] bg-[#050e21]"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      <div className="layout-container grid grid-cols-2 gap-7">
+        <div>
+          <h6 className="text-2xl text-[#2CE7FF] font-bold">Subscribe to our newsletter for development news!</h6>
+          <div className="flex items-center mt-4">
+            <input
+              type="text"
+              className="bg-white rounded-[10px] py-[7px] px-3 border-none flex-1 text-[#9E9E9E]"
+              placeholder="Insert your email"
+            />
+            <button
+              type="button"
+              className="bg-[#2CE7FF] shadow-blue rounded-[10px] py-[7px] px-9 text-[#212121] font-semibold border-none ml-[11px]"
+            >
+              Subscribe
+            </button>
           </div>
-          <div className="mt-3 mb-3">
-            <span>Join our Telegram Official Global Group</span>
-            <div className="d-flex align-items-center mt-3">
-              <img alt="telegram" src={telegramSvg} width="36" height="36" />{' '}
-              <a className="ms-3" href="https://t.me/BitCityZSocial" target="_blank" rel="noreferrer">
-                <img alt="telegram" src={bitcityzGlobalGroupPng} />
-              </a>
-            </div>
+          <p className="text-white mt-4">Follow us on our channels</p>
+          <div className="flex items-center mt-4">
+            <img src={telegramIcon} className="mr-5" alt="" />
+            <img src={twitterIcon} className="mr-5" alt="" />
+            <img src={mediumIcon} className="mr-5" alt="" />
+            <img src={discordIcon} className="mr-5" alt="" />
+            <img src={youtubeIcon} className="mr-5" alt="" />
+            <img src={facebookIcon} alt="" />
+          </div>
+          <p className="text-white mt-10">Join our Telegram Official Global Group</p>
+          <div className="flex items-center mt-1">
+            <img src={telegramIcon} className="mr-2 w-9 h-9" alt="" />
+            <span className="font-bold text-4xl text-gradient">BitCityZ Global Group</span>
           </div>
         </div>
-        <div className="card-right">
-          <img alt="subscribe" src={phonePng} />
-        </div>
+        <img src={bitcity} className="max-w-full" alt="" />
       </div>
     </footer>
   )

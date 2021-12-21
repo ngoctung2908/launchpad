@@ -21,14 +21,6 @@ export const mainnetTokens = {
     'Wrapped BNB',
     'https://www.binance.com/',
   ),
-  bctz: new Token(
-    MAINNET,
-    '0x5017ae3d04e29b67b33cf96a86980717a773a783',
-    18,
-    'BCTX',
-    'BitcityZ',
-    'https://pancakeswap.finance/',
-  ),
   // bnb here points to the wbnb contract. Wherever the currency BNB is required, conditional checks for the symbol 'BNB' can be used
   bnb: new Token(MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'BNB', 'BNB', 'https://www.binance.com/'),
   cake: new Token(
@@ -753,7 +745,7 @@ export const mainnetTokens = {
     MAINNET,
     '0xa2B726B1145A4773F68593CF171187d8EBe4d495',
     18,
-    'DEFI',
+    'INJ',
     'Injective Protocol Token',
     'https://injectiveprotocol.com/',
   ),
@@ -1830,6 +1822,39 @@ export const mainnetTokens = {
     'Impossible Decentralized Incubator Access Token',
     'https://impossible.finance/',
   ),
+  tt: new Token(
+    MAINNET,
+    '0x990E7154bB999FAa9b2fa5Ed29E822703311eA85',
+    18,
+    'TT',
+    'Thunder Token',
+    'https://www.thundercore.com/',
+  ),
+  gmee: new Token(
+    MAINNET,
+    '0x84e9a6F9D240FdD33801f7135908BfA16866939A',
+    18,
+    'GMEE',
+    'GAMEE',
+    'https://www.gamee.com/token',
+  ),
+  htd: new Token(MAINNET, '0x5E2689412Fae5c29BD575fbe1d5C1CD1e0622A8f', 18, 'HTD', 'HeroesTD', 'https://heroestd.io/'),
+  dpt: new Token(
+    MAINNET,
+    '0xE69cAef10A488D7AF31Da46c89154d025546e990',
+    18,
+    'DPT',
+    'Diviner Protocol',
+    'https://diviner.finance/',
+  ),
+  thg: new Token(
+    MAINNET,
+    '0x9fD87aEfe02441B123c3c32466cD9dB4c578618f',
+    18,
+    'THG',
+    'Thetan Gem',
+    'https://thetanarena.com/',
+  ),
 }
 
 export const testnetTokens = {
@@ -1840,14 +1865,6 @@ export const testnetTokens = {
     'WBNB',
     'Wrapped BNB',
     'https://www.binance.com/',
-  ),
-  bctz: new Token(
-    TESTNET,
-    '0x5017ae3d04e29b67b33cf96a86980717a773a783',
-    18,
-    'BCTX',
-    'BitcityZ',
-    'https://pancakeswap.finance/',
   ),
   cake: new Token(
     TESTNET,

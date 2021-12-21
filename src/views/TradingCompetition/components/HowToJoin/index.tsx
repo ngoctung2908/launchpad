@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Heading } from '@bitcityz/uikit'
+import { Flex, Text, Heading } from '@pancakeswap/uikit'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
@@ -28,7 +28,7 @@ const HowToJoin = () => {
       <HowToCard number={2} title={t('Battle Time')}>
         <Text fontSize="14px" color="textSubtle">
           {t(
-            'Trade BNB/BUSD, CAKE/BNB, ETH/BNB and BTCB/BNB during the battle period to raise both your and your team’s score. See the Rules section below for more.',
+            'Trade SANTOS/BNB, PORTO/BNB, LAZIO/BNB, SANTOS/BUSD, PORTO/BUSD, LAZIO/BUSD, CAKE/BNB and CAKE/BUSD during the battle period to raise both your and your team’s score. See the Rules section below for more.',
           )}
         </Text>
       </HowToCard>

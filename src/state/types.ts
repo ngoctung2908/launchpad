@@ -60,13 +60,19 @@ export interface DeserializedFarm extends DeserializedFarmConfig {
   userData?: DeserializedFarmUserData
 }
 
+export enum VaultKey {
+  CakeVault = 'cakeVault',
+  IfoPool = 'ifoPool',
+}
+
 interface CorePoolProps {
   startBlock?: number
   endBlock?: number
   apr?: number
+  rawApr?: number
   stakingTokenPrice?: number
   earningTokenPrice?: number
-  isAutoVault?: boolean
+  vaultKey?: VaultKey
 }
 
 export interface DeserializedPool extends DeserializedPoolConfig, CorePoolProps {
@@ -132,6 +138,11 @@ export interface VaultUser {
   lastDepositedTime: string
   lastUserActionTime: string
 }
+
+export interface IfoVaultUser extends VaultUser {
+  credit: string
+}
+
 export interface CakeVault {
   totalShares?: string
   pricePerFullShare?: string
@@ -142,9 +153,15 @@ export interface CakeVault {
   userData?: VaultUser
 }
 
+export interface IfoCakeVault extends Omit<CakeVault, 'userData'> {
+  userData?: IfoVaultUser
+  creditStartBlock?: number
+}
+
 export interface PoolsState {
   data: SerializedPool[]
   cakeVault: CakeVault
+  ifoPool: IfoCakeVault
   userDataLoaded: boolean
 }
 
